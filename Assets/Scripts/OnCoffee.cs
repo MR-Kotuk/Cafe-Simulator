@@ -56,6 +56,7 @@ public class OnCoffee : MonoBehaviour
                 _gameContr._myOrderObj = _coffeeOnBarPlus;
             else
                 _gameContr._myOrderObj = _coffeeOnBar;
+
             _gameContr.ClientPay();
 
             _randomOrder.isDone = true;
@@ -76,5 +77,6 @@ public class OnCoffee : MonoBehaviour
         _coffeeOnBar.SetActive(false);
         _randomOrder.isDone = false;
         _randomOrder.isOrder = false;
+        isMilk = false;
     }
 }

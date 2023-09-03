@@ -10,12 +10,10 @@ public class GameContr : MonoBehaviour
     [SerializeField] private TMP_Text _myMoney;
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private GameObject _imageAngry;
-    [SerializeField] private GameObject _client;
 
     [SerializeField] private int _limitTips, _probabilityTips;
 
     [SerializeField] private int _payCola, _paySoda, _payCoffee, _payDesert, _payCoffeePlus, _payDonut;
-
 
     private int _range;
     private int _howClients;
@@ -35,9 +33,6 @@ public class GameContr : MonoBehaviour
             _range = 0;
 
         _myMoney.text = _range + "";
-
-        if (Input.GetKeyDown(KeyCode.R))
-            Instantiate(_client);
     }
 
     public void EndGame()

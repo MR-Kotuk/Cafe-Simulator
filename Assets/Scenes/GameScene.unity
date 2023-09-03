@@ -5742,7 +5742,6 @@ MonoBehaviour:
   _myMoney: {fileID: 2116771039}
   _tipsText: {fileID: 1129410736}
   _imageAngry: {fileID: 509902920}
-  _client: {fileID: 642335549}
   _limitTips: 50
   _probabilityTips: 100
   _payCola: 10
@@ -8325,7 +8324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100026, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
       propertyPath: m_Name
-      value: Characters
+      value: ExampleClient
       objectReference: {fileID: 0}
     - target: {fileID: 100026, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
       propertyPath: m_IsActive

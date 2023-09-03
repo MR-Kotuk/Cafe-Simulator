@@ -39,7 +39,7 @@ public class MoveClient : MonoBehaviour
 
     private void Update()
     {
-        if (_randomOrder.isDone)
+        if (_randomOrder.isDone && !isExit && !isMove)
         {
             _anim.SetBool("isUp", true);
             Invoke("ExitAtCafe", 2f);
@@ -68,8 +68,11 @@ public class MoveClient : MonoBehaviour
         if (distExitPos <= 0.5f && isExit)
         {
             isExit = false;
-            gameObject.SetActive(false);
             _gameContr.EndGame();
+            if (gameObject.name != "ExampleClient")
+                Destroy(gameObject);
+            else
+                gameObject.SetActive(false);
         }      
 
         if (distBar <= _distToBar && !isExit)

@@ -39,7 +39,7 @@ public class RandomOrder : MonoBehaviour
 
         isOrder = true;
 
-        Invoke("SecondClient", 2f);
+        Invoke("SecondClient", 3f);
     }
 
     private int RandomNum(int an, int at)
@@ -49,6 +49,7 @@ public class RandomOrder : MonoBehaviour
 
     private void SecondClient()
     {
-        Instantiate(_client);
+        GameObject _createdObject = Instantiate(_client);
+        _createdObject.SetActive(true);
     }
 }

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{15592BB8-9428-74AD-CEE0-2573C6E129FD}</ProjectGuid>
+    <ProjectGuid>{1D938CC7-85CB-3387-66E4-AA6155805127}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -861,23 +861,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ToonyColorsPro.Runtime.csproj">
-      <Project>{FB5AE99A-3AE1-F6E5-7651-92A54E978B11}</Project>
+      <Project>{902A12C7-F950-9FDE-78AC-B8551985A41E}</Project>
       <Name>ToonyColorsPro.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="ToonyColorsPro.Editor.csproj">
-      <Project>{8704334E-4221-8988-BE63-FDBF44AF6349}</Project>
+      <Project>{56B44EB0-E0C8-C226-6827-D4EC43E42D78}</Project>
       <Name>ToonyColorsPro.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
-      <Project>{B67A98BF-99FB-D6F4-7565-CE10A6975455}</Project>
+      <Project>{0DDB5541-6A2D-2E86-3F2D-787B71240CCB}</Project>
       <Name>ToonyColorsPro.Demo.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="ToonyColorsPro2.Demo.csproj">
-      <Project>{E734DD47-EA0F-90BF-31EB-8F1BB84BE504}</Project>
+      <Project>{F56A9B82-D82F-05A5-4584-E653DEF6C280}</Project>
       <Name>ToonyColorsPro2.Demo</Name>
     </ProjectReference>
     <ProjectReference Include="KinoBloom.Runtime.csproj">
-      <Project>{119B5BBB-F1EC-AFB0-4EA4-3CE591E78193}</Project>
+      <Project>{5459D109-62F5-30D5-D127-22EA819B9151}</Project>
       <Name>KinoBloom.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
