@@ -23,6 +23,7 @@ public class OnCoffee : MonoBehaviour
         {
             _randomOrder.isOrder = false;
             isInMaker = true;
+
             _coffeeInMaker.SetActive(true);
         }   
     }
@@ -32,10 +33,11 @@ public class OnCoffee : MonoBehaviour
         if (isInMaker)
         {
             isPoulCoffee = true;
+
             if (isMilk)
                 _animMilk.SetBool("isPoul", true);
-
             _anim.SetBool("isPoul", true);
+
             Invoke("PoulIsFalse", 5f);
         }
     }
@@ -52,6 +54,7 @@ public class OnCoffee : MonoBehaviour
         {
             _coffeeInMaker.SetActive(false);
             _coffeeOnBar.SetActive(true);
+
             if (isMilk)
                 _gameContr._myOrderObj = _coffeeOnBarPlus;
             else
@@ -68,6 +71,7 @@ public class OnCoffee : MonoBehaviour
     private void PoulIsFalse()
     {
         isInMaker = false;
+
         _anim.SetBool("isPoul", false);
         _animMilk.SetBool("isPoul", false);
     }
@@ -75,8 +79,11 @@ public class OnCoffee : MonoBehaviour
     private void EnableFalse()
     {
         _coffeeOnBar.SetActive(false);
+
         _randomOrder.isDone = false;
         _randomOrder.isOrder = false;
+
+        isPoulCoffee = false;
         isMilk = false;
     }
 }

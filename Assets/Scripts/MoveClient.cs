@@ -51,19 +51,17 @@ public class MoveClient : MonoBehaviour
 
     private void MoveControl()
     {
-        float dist = DistTo(_door.position);
-        float distBar = DistTo(_bar.position);
-        float distExitPos = DistTo(_exitPosMove);
-
-        if (dist <= 1.3f && !isExit || dist <= _exitDistToDoor && isExit)
-            isMoveToDoor = false;
-
         if (isMoveToDoor)
-            Move(_door.position);
+            MoveToDoor();
         else if (!isMoveToDoor && isExit)
-            Move(_exitPosMove);
+            ToExit();
         else if (!isMoveToDoor && !isExit)
-            Move(_bar.position);
+            MoveToBar();
+    }
+
+    private void ToExit()
+    {
+        float distExitPos = DistTo(_exitPosMove);
 
         if (distExitPos <= 0.5f && isExit)
         {
@@ -73,7 +71,14 @@ public class MoveClient : MonoBehaviour
                 Destroy(gameObject);
             else
                 gameObject.SetActive(false);
-        }      
+        }
+        else
+            Move(_exitPosMove);
+    }
+
+    private void MoveToBar()
+    {
+        float distBar = DistTo(_bar.position);
 
         if (distBar <= _distToBar && !isExit)
         {
@@ -86,6 +91,29 @@ public class MoveClient : MonoBehaviour
 
             _randomOrder.CreateOrder();
         }
+        else
+            Move(_bar.position);
+    }
+
+    private void MoveToDoor()
+    {
+        float dist = DistTo(_door.position);
+
+        if (dist <= 1.3f && !isExit || dist <= _exitDistToDoor && isExit)
+            isMoveToDoor = false;
+        else
+            Move(_door.position);
+    }
+
+    private void ExitAtCafe()
+    {
+        _anim.SetBool("isUp", false);
+        _anim.SetBool("isMove", true);
+
+        isExit = true;
+        isMoveToDoor = true;
+        isMove = true;
+        _randomOrder.isDone = false;
     }
 
     private void Move(Vector3 currentTo)
@@ -100,17 +128,6 @@ public class MoveClient : MonoBehaviour
             _skins[i].SetActive(false);
 
         _skins[RandomNum(0, _skins.Length)].SetActive(true);
-    }
-
-    private void ExitAtCafe()
-    {
-        _anim.SetBool("isUp", false);
-        _anim.SetBool("isMove", true);
-
-        isExit = true;
-        isMoveToDoor = true;
-        isMove = true;
-        _randomOrder.isDone = false;
     }
 
     private bool RandomNum()
