@@ -14,8 +14,17 @@ public class RandomOrder : MonoBehaviour
     [SerializeField] private GameObject[] _orders = new GameObject[5];
     [SerializeField] private GameObject _client;
 
-    private int _orderNum;
+    [SerializeField] private float _intervals;
 
+
+    private int _orderNum;
+    private bool isGame = true;
+
+    private void Start()
+    {
+        isGame = true;
+        StartCoroutine(CreateClients());
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightShift))
@@ -38,8 +47,6 @@ public class RandomOrder : MonoBehaviour
         _gameContr._orderObj = _orders[_orderNum];
 
         isOrder = true;
-
-        Invoke("SecondClient", 3f);
     }
 
     private int RandomNum(int an, int at)
@@ -47,9 +54,14 @@ public class RandomOrder : MonoBehaviour
         return Random.Range(an, at);
     }
 
-    private void SecondClient()
+    private IEnumerator CreateClients()
     {
-        GameObject _createdObject = Instantiate(_client);
-        _createdObject.SetActive(true);
+        while (isGame)
+        {
+            yield return new WaitForSeconds(_intervals);
+
+            GameObject _createdObject = Instantiate(_client);
+            _createdObject.SetActive(true);
+        }
     }
 }

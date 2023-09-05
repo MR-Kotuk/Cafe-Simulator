@@ -7,11 +7,11 @@ public class MenuUI : MonoBehaviour
 {
     public void OnToHomeButton()
     {
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("HomeScene");
     }
     public void OnToShopButton()
     {
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("ShopScene");
     }
 
     public void OnToGameButton()

@@ -19,6 +19,7 @@ public class MoveClient : MonoBehaviour
     [SerializeField] private int _speed;
     [SerializeField] private float _distToBar, _distToDoor, _exitDistToDoor;
 
+    private int _howOrders = 0;
     private bool isExit;
     private bool isMove, isMoveToDoor;
     private Vector3 _exitPosMove;
@@ -41,12 +42,29 @@ public class MoveClient : MonoBehaviour
     {
         if (_randomOrder.isDone && !isExit && !isMove)
         {
+            _randomOrder.isDone = false;
+            _howOrders++;
+
             _anim.SetBool("isUp", true);
-            Invoke("ExitAtCafe", 2f);
+
+            if (RandomNum() && _howOrders <= 2)
+            {
+                _randomOrder.isOrder = false;
+                Invoke("CreateOrder", 2f);
+            }
+            else
+                Invoke("ExitAtCafe", 2f);
         }
 
         if (isMove)
             MoveControl();
+    }
+
+    private void CreateOrder()
+    {
+        _anim.SetBool("isUp", false);
+
+        _randomOrder.CreateOrder();
     }
 
     private void MoveControl()
