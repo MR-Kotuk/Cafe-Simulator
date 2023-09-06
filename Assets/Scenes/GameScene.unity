@@ -6044,13 +6044,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orderObj: {fileID: 0}
   _myOrderObj: {fileID: 0}
-  _myMoney: {fileID: 2116771039}
+  _myMoneyText: {fileID: 2116771039}
   _tipsText: {fileID: 1129410736}
   _workDays: {fileID: 1810592310}
   _imageAngry: {fileID: 509902920}
   _limitTips: 50
   _probabilityTips: 100
   _payments: {fileID: 11400000, guid: 29012616308f32c45900c2ca5b95a795, type: 2}
+  _myMoney: {fileID: 11400000, guid: 3b52e81b1ca62334ab64e6ab1117388f, type: 2}
 --- !u!4 &776654010
 Transform:
   m_ObjectHideFlags: 0

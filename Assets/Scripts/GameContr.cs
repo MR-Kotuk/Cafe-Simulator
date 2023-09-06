@@ -9,16 +9,19 @@ public class GameContr : MonoBehaviour
     public GameObject _orderObj;
     public GameObject _myOrderObj;
 
-    [SerializeField] private TMP_Text _myMoney;
+    [SerializeField] private TMP_Text _myMoneyText;
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private TMP_Text _workDays;
+
     [SerializeField] private GameObject _imageAngry;
 
     [SerializeField] private int _limitTips, _probabilityTips;
 
     [SerializeField] private Payments _payments;
+    [SerializeField] private MyMoney _myMoney;
 
     private int _range;
+    private int _profit;
     private int _howDays;
     private int _tips;
 
@@ -26,24 +29,27 @@ public class GameContr : MonoBehaviour
     {
         _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
+
+        _profit = 0;
         _howDays++;
         WorkTime();
     }
     private void Update()
     {
         if (Input.GetKey(KeyCode.D))
-        {
-            _range = 0;
             _howDays = 0;
-        }
 
-        _myMoney.text = _range + "";
+        if (Input.GetKeyDown(KeyCode.RightAlt))
+            SceneManager.LoadScene("EndWorkDayScene");
+
+        _myMoneyText.text = _range + "";
         _workDays.text = _howDays + "";
     }
 
     private void EndGame()
     {
         PlayerPrefs.SetInt("MyMoney", _range);
+        PlayerPrefs.SetInt("Profit", _profit);
         PlayerPrefs.SetInt("HowDays", _howDays);
 
         SceneManager.LoadScene("EndWorkDayScene");
@@ -56,22 +62,22 @@ public class GameContr : MonoBehaviour
             switch (_orderObj.gameObject.tag)
             {
                 case "cola":
-                    _range += _payments._payCola;
+                    _profit += _payments._payCola;
                     break;
                 case "soda":
-                    _range += _payments._paySoda;
+                    _profit += _payments._paySoda;
                     break;
                 case "coffee":
-                    _range += _payments._payCoffee;
+                    _profit += _payments._payCoffee;
                     break;
                 case "coffee+":
-                    _range += _payments._payCoffeePlus;
+                    _profit += _payments._payCoffeePlus;
                     break;
                 case "donut":
-                    _range += _payments._payDonut;
+                    _profit += _payments._payDonut;
                     break;
                 case "desert":
-                    _range += _payments._payDesert;
+                    _profit += _payments._payDesert;
                     break;
             }
             if (Random.Range(0, _probabilityTips) == 0)
@@ -84,9 +90,11 @@ public class GameContr : MonoBehaviour
                     Invoke("Tips", 3f);
                 }
                 
-                _range += _tips;
+                _profit += _tips;
 
             }
+
+            _range += _profit;
         }
         else
         {
