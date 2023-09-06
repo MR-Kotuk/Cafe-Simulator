@@ -84,7 +84,6 @@ public class MoveClient : MonoBehaviour
         if (distExitPos <= 0.5f && isExit)
         {
             isExit = false;
-            _gameContr.EndGame();
             if (gameObject.name != "ExampleClient")
                 Destroy(gameObject);
             else
