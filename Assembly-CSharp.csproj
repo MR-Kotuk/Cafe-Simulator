@@ -70,7 +70,6 @@
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXButtonScript.cs" />
     <Compile Include="Assets\Scripts\GameContr.cs" />
     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXLightFade.cs" />
-    <Compile Include="Assets\Scripts\MyMoney.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXEffectControllerPooled.cs" />
     <Compile Include="Assets\Scripts\Payments.cs" />
     <Compile Include="Assets\Scripts\OnCoffee.cs" />

@@ -350,7 +350,6 @@
 "Assets/Scripts/GameContr.cs"
 "Assets/Scripts/MenuUI.cs"
 "Assets/Scripts/MoveClient.cs"
-"Assets/Scripts/MyMoney.cs"
 "Assets/Scripts/OnCoffee.cs"
 "Assets/Scripts/OnSoda.cs"
 "Assets/Scripts/Payments.cs"

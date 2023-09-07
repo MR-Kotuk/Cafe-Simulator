@@ -5,22 +5,26 @@ using TMPro;
 
 public class ResultDay : MonoBehaviour
 {
-    [SerializeField] private MyMoney _myMoney;
-
     [SerializeField] private TMP_Text _myMoneyText;
     [SerializeField] private TMP_Text _workDays;
 
     private int _howWorkDays;
 
-    private bool isX2 = true;
+    private bool isX2;
 
     private int _profit, _range;
 
     private void Start()
     {
+        isX2 = true;
+
         _profit = PlayerPrefs.GetInt("Profit");
-        _range = PlayerPrefs.GetInt("MyMoney") - _profit;
+        _range = PlayerPrefs.GetInt("MyMoney");
         _howWorkDays = PlayerPrefs.GetInt("HowDays");
+
+        PlayerPrefs.SetInt("MyMoney", _range + _profit);
+        PlayerPrefs.Save();
+
     }
     public void OnX2Button()
     {
@@ -40,8 +44,9 @@ public class ResultDay : MonoBehaviour
     {
         isX2 = false;
 
-        _range += _profit * 2;
+        _profit *= 2;
 
-        PlayerPrefs.SetInt("MyMoney", _range);
+        PlayerPrefs.SetInt("MyMoney", _range + _profit);
+        PlayerPrefs.Save();
     }
 }

@@ -18,7 +18,6 @@ public class GameContr : MonoBehaviour
     [SerializeField] private int _limitTips, _probabilityTips;
 
     [SerializeField] private Payments _payments;
-    [SerializeField] private MyMoney _myMoney;
 
     private int _range;
     private int _profit;
@@ -32,25 +31,34 @@ public class GameContr : MonoBehaviour
 
         _profit = 0;
         _howDays++;
+
         WorkTime();
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.D))
-            _howDays = 0;
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            PlayerPrefs.SetInt("MyMoney", 0);
+            PlayerPrefs.SetInt("HowDays", 0);
+            PlayerPrefs.SetInt("Profit", 0);
+
+            _howDays = 1;
+            _range = 0;
+        }
 
         if (Input.GetKeyDown(KeyCode.RightAlt))
-            SceneManager.LoadScene("EndWorkDayScene");
+            EndGame();
 
-        _myMoneyText.text = _range + "";
+        _myMoneyText.text = $"{_range + _profit}";
         _workDays.text = _howDays + "";
     }
 
     private void EndGame()
     {
         PlayerPrefs.SetInt("MyMoney", _range);
-        PlayerPrefs.SetInt("Profit", _profit);
         PlayerPrefs.SetInt("HowDays", _howDays);
+        PlayerPrefs.SetInt("Profit", _profit);
+        PlayerPrefs.Save();
 
         SceneManager.LoadScene("EndWorkDayScene");
     }
@@ -91,10 +99,7 @@ public class GameContr : MonoBehaviour
                 }
                 
                 _profit += _tips;
-
             }
-
-            _range += _profit;
         }
         else
         {
@@ -114,7 +119,6 @@ public class GameContr : MonoBehaviour
 
     private void WorkTime()
     {
-        Debug.Log("Start");
         switch (_howDays)
         {
             case < 5:
@@ -134,7 +138,6 @@ public class GameContr : MonoBehaviour
 
     private IEnumerator TimeToEnd(float wait)
     {
-        Debug.Log(wait);
         yield return new WaitForSeconds(wait);
         EndGame();
     }

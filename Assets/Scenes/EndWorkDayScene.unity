@@ -540,7 +540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Day: 1'
+  m_text: 'Day: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1486,7 +1486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f738b5365b32fa04fb2f76a82df3c62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myMoney: {fileID: 11400000, guid: 3b52e81b1ca62334ab64e6ab1117388f, type: 2}
   _myMoneyText: {fileID: 1988190106}
   _workDays: {fileID: 448531054}
 --- !u!114 &1426917379
@@ -1786,7 +1785,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1db8bbd11d5de49abbef16b386788c34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6cf061d12ac44b37b01bc246fe5988b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2216,7 +2215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: + 1
+  m_text: + 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
