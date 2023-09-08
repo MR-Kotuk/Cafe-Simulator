@@ -355,6 +355,8 @@
 "Assets/Scripts/Payments.cs"
 "Assets/Scripts/RandomOrder.cs"
 "Assets/Scripts/ResultDay.cs"
+"Assets/Scripts/ShopLogic.cs"
+"Assets/Scripts/ShowMoney.cs"
 "Assets/Scripts/SoundControl.cs"
 -langversion:9.0
 

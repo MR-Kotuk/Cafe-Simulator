@@ -18,3 +18,7 @@ MonoBehaviour:
   _payCoffeePlus: 20
   _payDesert: 12
   _payDonut: 8
+  _unblockColaPay: 500
+  _unblockSodaPay: 300
+  _unblockDesertPay: 400
+  _unblockDonutPay: 200

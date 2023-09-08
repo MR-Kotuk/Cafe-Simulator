@@ -38,11 +38,9 @@ public class GameContr : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            PlayerPrefs.SetInt("MyMoney", 0);
-            PlayerPrefs.SetInt("HowDays", 0);
-            PlayerPrefs.SetInt("Profit", 0);
+            PlayerPrefs.DeleteAll();
 
-            _howDays = 1;
+            _howDays = 0;
             _range = 0;
         }
 
@@ -55,11 +53,7 @@ public class GameContr : MonoBehaviour
 
     private void EndGame()
     {
-        PlayerPrefs.SetInt("MyMoney", _range);
-        PlayerPrefs.SetInt("HowDays", _howDays);
-        PlayerPrefs.SetInt("Profit", _profit);
-        PlayerPrefs.Save();
-
+        SavePrefs();
         SceneManager.LoadScene("EndWorkDayScene");
     }
 
@@ -100,6 +94,7 @@ public class GameContr : MonoBehaviour
                 
                 _profit += _tips;
             }
+            SavePrefs();
         }
         else
         {
@@ -140,5 +135,14 @@ public class GameContr : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         EndGame();
+    }
+
+    public void SavePrefs()
+    {
+        PlayerPrefs.SetInt("MyMoney", _range);
+        PlayerPrefs.SetInt("HowDays", _howDays);
+        PlayerPrefs.SetInt("Profit", _profit);
+
+        PlayerPrefs.Save();
     }
 }
