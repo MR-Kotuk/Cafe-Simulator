@@ -18,13 +18,8 @@ public class RandomOrder : MonoBehaviour
 
 
     private int _orderNum;
-    private bool isGame = true;
+    public bool isGame = false;
 
-    private void Start()
-    {
-        isGame = true;
-        StartCoroutine(CreateClients());
-    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightShift))
@@ -35,6 +30,9 @@ public class RandomOrder : MonoBehaviour
             _orderUI.SetActive(false);
             _orders[_orderNum].SetActive(false);
         }
+
+        if (isGame)
+            CreateClients();
     }
 
     public void CreateOrder()
@@ -54,14 +52,10 @@ public class RandomOrder : MonoBehaviour
         return Random.Range(an, at);
     }
 
-    private IEnumerator CreateClients()
+    private void CreateClients()
     {
-        while (isGame)
-        {
-            yield return new WaitForSeconds(_intervals);
-
-            GameObject _createdObject = Instantiate(_client);
-            _createdObject.SetActive(true);
-        }
+        isGame = false;
+        GameObject _createdObject = Instantiate(_client);
+        _createdObject.SetActive(true);
     }
 }

@@ -7,17 +7,16 @@ public class ShowMoney : MonoBehaviour
 {
     [SerializeField] private TMP_Text _myMoneyText;
 
-    private int myMoney, myProfit;
     private void Start()
     {
+        int myMoney, myProfit;
         myMoney = PlayerPrefs.GetInt("MyMoney");
         myProfit = PlayerPrefs.GetInt("Profit");
+
+        PlayerPrefs.SetInt("MyMoney", myMoney + myProfit);
     }
     private void Update()
     {
-        PlayerPrefs.SetInt("MyMoney", myMoney + myProfit);
-        int cash = PlayerPrefs.GetInt("MyMoney");
-
-        _myMoneyText.text = $"{cash}";
+        _myMoneyText.text = $"{PlayerPrefs.GetInt("MyMoney")}";
     }
 }

@@ -99,7 +99,8 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 4968b5e884fa48c479267dbceff28158,
     type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 8af6fae22d34ccd4487f5ce0a3eb4879,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -142,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &13591288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1013,7 +1014,7 @@ GameObject:
   - component: {fileID: 467249924}
   - component: {fileID: 467249923}
   m_Layer: 5
-  m_Name: block (1)
+  m_Name: Sodablock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,7 +1141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &468289728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1427,7 +1428,7 @@ GameObject:
   - component: {fileID: 553760946}
   - component: {fileID: 553760945}
   m_Layer: 5
-  m_Name: block (2)
+  m_Name: Donutblock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3289,7 +3290,7 @@ GameObject:
   - component: {fileID: 1430038518}
   - component: {fileID: 1430038517}
   m_Layer: 5
-  m_Name: block
+  m_Name: Colablock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3622,7 +3623,7 @@ GameObject:
   - component: {fileID: 1472008647}
   - component: {fileID: 1472008646}
   m_Layer: 5
-  m_Name: block (1)
+  m_Name: Desertblock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4478,7 +4479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1622533887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4984,7 +4985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1733457267
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5381,18 +5382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b756e248ffd3a48821bb503e8e710f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cola:
-  - {fileID: 13591287}
-  - {fileID: 1430038515}
-  _soda:
-  - {fileID: 468289727}
-  - {fileID: 467249921}
-  _donut:
-  - {fileID: 1622533886}
-  - {fileID: 553760943}
-  _desert:
-  - {fileID: 1733457266}
-  - {fileID: 1472008644}
+  _cola: {fileID: 1430038515}
+  _soda: {fileID: 467249921}
+  _donut: {fileID: 553760943}
+  _desert: {fileID: 1472008644}
   _payments: {fileID: 11400000, guid: 29012616308f32c45900c2ca5b95a795, type: 2}
 --- !u!4 &1911337168
 Transform:

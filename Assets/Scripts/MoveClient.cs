@@ -131,6 +131,7 @@ public class MoveClient : MonoBehaviour
         isMoveToDoor = true;
         isMove = true;
         _randomOrder.isDone = false;
+        _randomOrder.isGame = true;
     }
 
     private void Move(Vector3 currentTo)

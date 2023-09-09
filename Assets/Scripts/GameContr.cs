@@ -9,6 +9,8 @@ public class GameContr : MonoBehaviour
     public GameObject _orderObj;
     public GameObject _myOrderObj;
 
+    public GameObject OpenCola, OpenSoda, OpenDonut, OpenDesert;
+
     [SerializeField] private TMP_Text _myMoneyText;
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private TMP_Text _workDays;
@@ -36,6 +38,8 @@ public class GameContr : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            _profit += 100;
         if (Input.GetKeyDown(KeyCode.D))
         {
             PlayerPrefs.DeleteAll();
