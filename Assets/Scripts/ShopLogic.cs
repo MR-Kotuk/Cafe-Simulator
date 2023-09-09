@@ -9,6 +9,7 @@ public class ShopLogic : MonoBehaviour
 
     private int myMoney;
     private bool isBuy;
+    private bool[] isOpen;
     private void Update()
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
@@ -50,7 +51,7 @@ public class ShopLogic : MonoBehaviour
 
     public void OnBuy(string name)
     {
-        if (isBuy)
+        if (isBuy && PlayerPrefs.GetInt(name) != 1)
         {
             if (name == "cola")
                 PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockColaPay);
@@ -61,6 +62,7 @@ public class ShopLogic : MonoBehaviour
             else if (name == "donut")
                 PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockDonutPay);
 
+            PlayerPrefs.SetInt(name, 1);
             PlayerPrefs.Save();
         }
     }

@@ -50,7 +50,7 @@ public class OnCoffee : MonoBehaviour
 
     public void IsDone()
     {
-        if (!isInMaker)
+        if (!isInMaker && isPoulCoffee)
         {
             _coffeeInMaker.SetActive(false);
             _coffeeOnBar.SetActive(true);

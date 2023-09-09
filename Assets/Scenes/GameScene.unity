@@ -5688,7 +5688,7 @@ MonoBehaviour:
   _randomPos:
   - {x: -19.36, y: -1.8, z: -25.46}
   - {x: -20.82, y: -1.8, z: -40.6}
-  - {x: 11.61, y: -1.8, z: -64.89}
+  - {x: 11.61, y: -1.8, z: -52}
   _skins:
   - {fileID: 2060604053}
   - {fileID: 1353383831}
@@ -5703,7 +5703,7 @@ MonoBehaviour:
   _randomOrder: {fileID: 953613498}
   _bar: {fileID: 2032227276}
   _door: {fileID: 438887726}
-  _speed: 3
+  _speed: 4
   _distToBar: 1.5
   _distToDoor: 1.3
   _exitDistToDoor: 3
@@ -6804,10 +6804,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orderObj: {fileID: 0}
   _myOrderObj: {fileID: 0}
-  OpenCola: {fileID: 1357014054}
-  OpenSoda: {fileID: 1402491272}
-  OpenDonut: {fileID: 1369038333}
-  OpenDesert: {fileID: 390450140}
   _myMoneyText: {fileID: 2116771039}
   _tipsText: {fileID: 1129410736}
   _workDays: {fileID: 1810592310}
@@ -8717,13 +8713,17 @@ MonoBehaviour:
   _orderUI: {fileID: 503543511}
   _orders:
   - {fileID: 1567104757}
-  - {fileID: 681546466}
-  - {fileID: 2034591070}
-  - {fileID: 35851831}
-  - {fileID: 1244082845}
   - {fileID: 11021081}
+  _ordersObjects: []
   _client: {fileID: 642335549}
-  _intervals: 30
+  _colaOrder: {fileID: 2034591070}
+  _sodaOrder: {fileID: 681546466}
+  _donutOrder: {fileID: 1244082845}
+  _desertOrder: {fileID: 35851831}
+  _cola: {fileID: 1357014054}
+  _soda: {fileID: 1402491272}
+  _donut: {fileID: 1369038333}
+  _desert: {fileID: 390450140}
   isGame: 0
 --- !u!4 &953613499
 Transform:
@@ -9763,7 +9763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.68
+      value: 10.18
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9771,7 +9771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.99
+      value: -53.59
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
       propertyPath: m_LocalRotation.w

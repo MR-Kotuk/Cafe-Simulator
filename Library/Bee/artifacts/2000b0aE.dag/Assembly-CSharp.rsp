@@ -352,6 +352,7 @@
 "Assets/Scripts/MoveClient.cs"
 "Assets/Scripts/OnCoffee.cs"
 "Assets/Scripts/OnSoda.cs"
+"Assets/Scripts/OpenL.cs"
 "Assets/Scripts/Payments.cs"
 "Assets/Scripts/RandomOrder.cs"
 "Assets/Scripts/ResultDay.cs"
