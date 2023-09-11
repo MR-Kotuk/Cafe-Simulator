@@ -56,9 +56,9 @@ public class OnCoffee : MonoBehaviour
             _coffeeOnBar.SetActive(true);
 
             if (isMilk)
-                _gameContr._myOrderObj = _coffeeOnBarPlus;
+                _gameContr.MyOrderObj = _coffeeOnBarPlus;
             else
-                _gameContr._myOrderObj = _coffeeOnBar;
+                _gameContr.MyOrderObj = _coffeeOnBar;
 
             _gameContr.ClientPay();
 

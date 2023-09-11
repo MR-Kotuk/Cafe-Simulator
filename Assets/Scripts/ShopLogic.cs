@@ -5,34 +5,19 @@ using UnityEngine;
 public class ShopLogic : MonoBehaviour
 {
     [SerializeField] private GameObject _cola, _soda, _donut, _desert;
+    [SerializeField] private GameObject[] _menu;
     [SerializeField] private Payments _payments;
 
     private int myMoney;
     private bool isBuy;
-    private bool[] isOpen;
     private void Update()
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
 
-        if (myMoney >= _payments._unblockColaPay)
-            Unblock(_cola, false);
-        else
-            Unblock(_cola, true);
-
-        if (myMoney >= _payments._unblockDesertPay)
-            Unblock(_desert, false);
-        else
-            Unblock(_desert, true);
-
-        if (myMoney >= _payments._unblockSodaPay)
-            Unblock(_soda, false);
-        else
-            Unblock(_soda, true);
-
-        if (myMoney >= _payments._unblockDonutPay)
-            Unblock(_donut, false);
-        else
-            Unblock(_donut, true);
+        isCanBuy(_payments._unblockColaPay, _cola);
+        isCanBuy(_payments._unblockSodaPay, _soda);
+        isCanBuy(_payments._unblockDonutPay, _donut);
+        isCanBuy(_payments._unblockDesertPay, _desert);
     }
 
     private void Unblock(GameObject _unblock, bool block)
@@ -65,5 +50,30 @@ public class ShopLogic : MonoBehaviour
             PlayerPrefs.SetInt(name, 1);
             PlayerPrefs.Save();
         }
+    }
+
+    public void OnBuyColor(int numColor)
+    {
+        //Add Reklam Logic
+
+
+
+
+
+        PlayerPrefs.SetInt("ColorWalls", numColor);
+    }
+
+    public void NextMenu()
+    {
+        for (int i = 0; i < _menu.Length; i++)
+            _menu[i].SetActive(!_menu[i].activeInHierarchy);
+    }
+
+    private void isCanBuy(int how, GameObject eat)
+    {
+        if (myMoney >= how)
+            Unblock(eat, false);
+        else
+            Unblock(eat, true);
     }
 }

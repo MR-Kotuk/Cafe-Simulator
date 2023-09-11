@@ -12,7 +12,7 @@ public class OnSoda : MonoBehaviour
     {
         if (_randomOrder.isOrder)
         {
-            _gameContr._myOrderObj = _sodaAnBar;
+            _gameContr.MyOrderObj = _sodaAnBar;
             _gameContr.ClientPay();
 
             _sodaAnBar.SetActive(true);

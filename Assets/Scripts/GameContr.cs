@@ -6,16 +6,18 @@ using TMPro;
 
 public class GameContr : MonoBehaviour
 {
-    public GameObject _orderObj;
-    public GameObject _myOrderObj;
+    public GameObject OrderObj;
+    public GameObject MyOrderObj;
+    public int ProbabilityTips;
 
     [SerializeField] private TMP_Text _myMoneyText;
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private TMP_Text _workDays;
 
     [SerializeField] private GameObject _imageAngry;
+    [SerializeField] private GameObject _walls, _ceiling;
 
-    [SerializeField] private int _limitTips, _probabilityTips;
+    [SerializeField] private int _limitTips;
 
     [SerializeField] private Payments _payments;
 
@@ -26,6 +28,24 @@ public class GameContr : MonoBehaviour
 
     private void Start()
     {
+        int numColor = PlayerPrefs.GetInt("ColorWalls");
+
+        switch (numColor)
+        {
+            case 0:
+                NewColor(255, 255, 255);
+                break;
+            case 2:
+                NewColor(255, 223, 0);
+                break;
+            case 3:
+                NewColor(53, 210, 53);
+                break;
+            case 4:
+                NewColor(95, 93, 255);
+                break;
+        }
+
         _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
 
@@ -33,6 +53,12 @@ public class GameContr : MonoBehaviour
         _howDays++;
 
         WorkTime();
+    }
+
+    private void NewColor(byte r, byte g, byte b)
+    {
+        _walls.GetComponent<Renderer>().material.color = new Color32(r, g, b, 255);
+        _ceiling.GetComponent<Renderer>().material.color = new Color32(r, g, b, 255);
     }
     private void Update()
     {
@@ -61,9 +87,9 @@ public class GameContr : MonoBehaviour
 
     public void ClientPay()
     {
-        if (_orderObj.gameObject.tag == _myOrderObj.gameObject.tag)
+        if (OrderObj.gameObject.tag == MyOrderObj.gameObject.tag)
         {
-            switch (_orderObj.gameObject.tag)
+            switch (OrderObj.gameObject.tag)
             {
                 case "cola":
                     _profit += _payments._payCola;
@@ -84,7 +110,7 @@ public class GameContr : MonoBehaviour
                     _profit += _payments._payDesert;
                     break;
             }
-            if (Random.Range(0, _probabilityTips) == 0)
+            if (Random.Range(0, ProbabilityTips) == 0)
             {
                 _tips = Random.Range(5, _limitTips);
 
