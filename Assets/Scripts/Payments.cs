@@ -8,5 +8,6 @@ public class Payments : ScriptableObject
     public int _payCola, _paySoda, _payCoffee, _payCoffeePlus;
     public int _payDesert, _payDonut;
 
-    public int _unblockColaPay, _unblockSodaPay, _unblockDesertPay, _unblockDonutPay;
+    public List<int> _unblockPay;
+    public List<int> _unblockPayColor;
 }

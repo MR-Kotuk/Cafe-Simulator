@@ -6898,6 +6898,17 @@ MonoBehaviour:
   _myMoneyText: {fileID: 2116771039}
   _tipsText: {fileID: 1129410736}
   _workDays: {fileID: 1810592310}
+  _materials:
+  - {fileID: 2100000, guid: e4c4f62857c134149a932fb6e7b4488e, type: 2}
+  - {fileID: 2100000, guid: e1eb93249bc36cb4c8d75402f5cb89fa, type: 2}
+  - {fileID: 2100000, guid: b3594ab9a0054eb49a09849b48012eef, type: 2}
+  - {fileID: 2100000, guid: 37d60b915c7cb1d4496e349755db228d, type: 2}
+  - {fileID: 2100000, guid: 6bdc1f5a70e47ae4fbeca62bd9b9122d, type: 2}
+  - {fileID: 2100000, guid: 15aaf314386480d458745ae515c1d964, type: 2}
+  - {fileID: 2100000, guid: 90e790ce55ff6f54896e4ad0f7f3dfdb, type: 2}
+  - {fileID: 2100000, guid: b8ba09c9b8962ae4c9802ad97f8abd05, type: 2}
+  - {fileID: 2100000, guid: be8dc862b6b697b4b993b5078d4ed91a, type: 2}
+  - {fileID: 2100000, guid: 88500c44ec8e2064aaa91815c8118e80, type: 2}
   _imageAngry: {fileID: 509902920}
   _walls: {fileID: 1280726539}
   _ceiling: {fileID: 1108797188}

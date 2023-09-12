@@ -14,6 +14,8 @@ public class GameContr : MonoBehaviour
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private TMP_Text _workDays;
 
+    [SerializeField] private Material[] _materials;
+
     [SerializeField] private GameObject _imageAngry;
     [SerializeField] private GameObject _walls, _ceiling;
 
@@ -30,21 +32,7 @@ public class GameContr : MonoBehaviour
     {
         int numColor = PlayerPrefs.GetInt("ColorWalls");
 
-        switch (numColor)
-        {
-            case 0:
-                NewColor(255, 255, 255);
-                break;
-            case 2:
-                NewColor(255, 223, 0);
-                break;
-            case 3:
-                NewColor(53, 210, 53);
-                break;
-            case 4:
-                NewColor(95, 93, 255);
-                break;
-        }
+        NewColor(_materials[numColor]);
 
         _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
@@ -55,10 +43,10 @@ public class GameContr : MonoBehaviour
         WorkTime();
     }
 
-    private void NewColor(byte r, byte g, byte b)
+    private void NewColor(Material material)
     {
-        _walls.GetComponent<Renderer>().material.color = new Color32(r, g, b, 255);
-        _ceiling.GetComponent<Renderer>().material.color = new Color32(r, g, b, 255);
+        _walls.GetComponent<MeshRenderer>().material = material;
+        _ceiling.GetComponent<MeshRenderer>().material = material;
     }
     private void Update()
     {
