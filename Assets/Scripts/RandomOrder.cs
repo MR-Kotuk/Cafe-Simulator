@@ -9,6 +9,7 @@ public class RandomOrder : MonoBehaviour
     public bool isOrder = false;
     public bool isDone = false;
     public bool isGame = false;
+    public bool isTime = false;
 
     [SerializeField] private GameContr _gameContr;
 
@@ -25,10 +26,12 @@ public class RandomOrder : MonoBehaviour
 
     private int _orderNum;
     private float MaxTime = 100, time;
-    private bool isTime;
+    private bool isTimes;
 
     private void Start()
     {
+        isTimes = true;
+
         AddObjectsToList(_colaOrder, _cola, "cola");
         AddObjectsToList(_sodaOrder, _soda, "soda");
         AddObjectsToList(_donutOrder, _donut, "donut");
@@ -36,8 +39,6 @@ public class RandomOrder : MonoBehaviour
 
         for (int i = 0; i < _ordersObjects.Count; i++)
             _ordersObjects[i].SetActive(true);
-
-        StartCoroutine(TimeMake());
     }
 
     private void Update()
@@ -63,8 +64,10 @@ public class RandomOrder : MonoBehaviour
     }
     public void CreateOrder()
     {
+        isTimes = true;
+        StartCoroutine(TimeMake());
+
         time = MaxTime;
-        isTime = true;
 
         _orderNum = RandomNum(0, _orders.Count);
 
@@ -88,7 +91,7 @@ public class RandomOrder : MonoBehaviour
     private void CreateClients()
     {
         time = MaxTime;
-        isTime = false;
+        isTimes = false;
         isGame = false;
         GameObject _createdObject = Instantiate(_client);
         _createdObject.SetActive(true);
@@ -96,13 +99,20 @@ public class RandomOrder : MonoBehaviour
 
     private IEnumerator TimeMake()
     {
-        time = MaxTime;
-
-        while (isTime)
+        while (isTimes)
         {
-            yield return new WaitForSeconds(0.4f);
+            Debug.Log(time);
+            if (time > 0)
+            {
+                yield return new WaitForSeconds(0.4f);
 
-            _timeBar.fillAmount = time-- / MaxTime;
+                _timeBar.fillAmount = time-- / MaxTime;
+            }
+            else if(time <= 0)
+            {
+                isTime = true;
+                isTimes = false;
+            }
         }
     }
 

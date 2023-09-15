@@ -1604,7 +1604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &411745369
 Transform:
   m_ObjectHideFlags: 0
@@ -1795,7 +1795,7 @@ GameObject:
   - component: {fileID: 467249923}
   m_Layer: 5
   m_Name: Sodablock
-  m_TagString: Untagged
+  m_TagString: soda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2344,7 +2344,7 @@ GameObject:
   - component: {fileID: 553760945}
   m_Layer: 5
   m_Name: Donutblock
-  m_TagString: Untagged
+  m_TagString: donut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3953,7 +3953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1053483751
 Transform:
   m_ObjectHideFlags: 0
@@ -5678,7 +5678,7 @@ GameObject:
   - component: {fileID: 1430038517}
   m_Layer: 5
   m_Name: Colablock
-  m_TagString: Untagged
+  m_TagString: cola
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6089,7 +6089,7 @@ GameObject:
   - component: {fileID: 1472008646}
   m_Layer: 5
   m_Name: Desertblock
-  m_TagString: Untagged
+  m_TagString: desert
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8688,7 +8688,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b756e248ffd3a48821bb503e8e710f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eat: []
+  _eat:
+  - {fileID: 1430038515}
+  - {fileID: 467249921}
+  - {fileID: 553760943}
+  - {fileID: 1472008644}
   _menu:
   - {fileID: 1053483750}
   - {fileID: 411745368}

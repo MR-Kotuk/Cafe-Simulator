@@ -9,61 +9,65 @@ public class ShopLogic : MonoBehaviour
     [SerializeField] private Payments _payments;
 
     private int myMoney;
+    private int _buyTrue = 1;
     private bool isBuy;
     private void Update()
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
 
         for (int i = 0; i < _eat.Count; i++)
-            Unblock(_eat[i], _payments._unblockPay[i]);
+        {
+            if (myMoney >= _payments._unblockPay[i])
+                Unblock(_eat[i], true);
+            else
+                Unblock(_eat[i], false);
+        }
+
     }
 
-    private void Unblock(GameObject _unblock, int how)
+    private void Unblock(GameObject _block, bool isValue)
     {
-        if (myMoney >= how)
-        {
-            _unblock.SetActive(false);
-            isBuy = true;
-        }
-        else
-        {
-            _unblock.SetActive(true);
-            isBuy = false;
-        }
+        _block.SetActive(!isValue);
+        isBuy = isValue;
     }
 
     public void OnBuy(string name)
     {
-        if (isBuy && PlayerPrefs.GetInt(name) != 1)
+        if (isBuy && PlayerPrefs.GetInt(name) != _buyTrue)
         {
-            if (name == "cola")
-                PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[0]);
-            else if (name == "soda")
-                PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[1]);
-            else if (name == "donut")
-                PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[2]);
-            else if (name == "desert")
-                PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[3]);
+            for(int i = 0; i < _eat.Count; i++)
+                if(name == _eat[i].tag)
+                    PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[i]);
 
-            PlayerPrefs.SetInt(name, 1);
+            PlayerPrefs.SetInt(name, _buyTrue);
             PlayerPrefs.Save();
         }
     }
 
     public void OnBuyColor(int numColor)
     {
-        if(myMoney >= _payments._unblockPayColor[numColor])
+        if(PlayerPrefs.GetInt($"Color {numColor}") == _buyTrue)
+            PlayerPrefs.SetInt("ColorWalls", numColor);
+        else if (myMoney >= _payments._unblockPayColor[numColor])
         {
             PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPayColor[numColor]);
+            PlayerPrefs.SetInt($"Color {numColor}", _buyTrue);
             PlayerPrefs.SetInt("ColorWalls", numColor);
         }
     }
     public void OnBuyReklamColor(int numColor)
     {
-        //Add Reklam Logic
+        if (PlayerPrefs.GetInt($"Color {numColor}") != _buyTrue)
+        {
+            Debug.Log("Reklam");
+
+            //Add Reklam Logic
 
 
 
+
+            PlayerPrefs.SetInt($"Color {numColor}", _buyTrue);
+        }
 
 
         PlayerPrefs.SetInt("ColorWalls", numColor);
