@@ -10,7 +10,6 @@ public class ShopLogic : MonoBehaviour
 
     private int myMoney;
     private int _buyTrue = 1;
-    private bool isBuy;
     private void Update()
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
@@ -18,22 +17,16 @@ public class ShopLogic : MonoBehaviour
         for (int i = 0; i < _eat.Count; i++)
         {
             if (myMoney >= _payments._unblockPay[i])
-                Unblock(_eat[i], true);
+                _eat[i].SetActive(false);
             else
-                Unblock(_eat[i], false);
+                _eat[i].SetActive(true);
         }
 
     }
 
-    private void Unblock(GameObject _block, bool isValue)
-    {
-        _block.SetActive(!isValue);
-        isBuy = isValue;
-    }
-
     public void OnBuy(string name)
     {
-        if (isBuy && PlayerPrefs.GetInt(name) != _buyTrue)
+        if (PlayerPrefs.GetInt(name) != _buyTrue)
         {
             for(int i = 0; i < _eat.Count; i++)
                 if(name == _eat[i].tag)
@@ -59,8 +52,6 @@ public class ShopLogic : MonoBehaviour
     {
         if (PlayerPrefs.GetInt($"Color {numColor}") != _buyTrue)
         {
-            Debug.Log("Reklam");
-
             //Add Reklam Logic
 
 

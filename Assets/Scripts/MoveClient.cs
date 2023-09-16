@@ -71,7 +71,7 @@ public class MoveClient : MonoBehaviour
     {
         if (isMoveToDoor)
             MoveToDoor();
-        else if (!isMoveToDoor && isExit || _randomOrder.isTime)
+        else if (!isMoveToDoor && isExit)
             ToExit();
         else if (!isMoveToDoor && !isExit)
             MoveToBar();
@@ -130,8 +130,8 @@ public class MoveClient : MonoBehaviour
         isExit = true;
         isMoveToDoor = true;
         isMove = true;
+        _randomOrder.isTimes = false;
         _randomOrder.isDone = false;
-        _randomOrder.isTime = false;
         _randomOrder.isGame = true;
     }
 

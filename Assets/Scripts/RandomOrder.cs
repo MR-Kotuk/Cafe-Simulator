@@ -9,7 +9,7 @@ public class RandomOrder : MonoBehaviour
     public bool isOrder = false;
     public bool isDone = false;
     public bool isGame = false;
-    public bool isTime = false;
+    public bool isTimes;
 
     [SerializeField] private GameContr _gameContr;
 
@@ -25,11 +25,12 @@ public class RandomOrder : MonoBehaviour
     [SerializeField] private GameObject _cola, _soda, _donut, _desert;
 
     private int _orderNum;
-    private float MaxTime = 100, time;
-    private bool isTimes;
+    private float time;
+    private readonly float _maxTime = 100;
 
     private void Start()
     {
+        time = _maxTime;
         isTimes = true;
 
         AddObjectsToList(_colaOrder, _cola, "cola");
@@ -43,7 +44,8 @@ public class RandomOrder : MonoBehaviour
 
     private void Update()
     {
-        time = MaxTime;
+        if (!isTimes)
+            time = _maxTime;
 
         if (isGame)
             CreateClients();
@@ -67,8 +69,6 @@ public class RandomOrder : MonoBehaviour
         isTimes = true;
         StartCoroutine(TimeMake());
 
-        time = MaxTime;
-
         _orderNum = RandomNum(0, _orders.Count);
 
         _orders[_orderNum].SetActive(true);
@@ -90,8 +90,6 @@ public class RandomOrder : MonoBehaviour
 
     private void CreateClients()
     {
-        time = MaxTime;
-        isTimes = false;
         isGame = false;
         GameObject _createdObject = Instantiate(_client);
         _createdObject.SetActive(true);
@@ -101,18 +99,14 @@ public class RandomOrder : MonoBehaviour
     {
         while (isTimes)
         {
-            Debug.Log(time);
             if (time > 0)
             {
-                yield return new WaitForSeconds(0.4f);
-
-                _timeBar.fillAmount = time-- / MaxTime;
+                yield return new WaitForSeconds(0.2f);
+                time -= 0.5f;
+                _timeBar.fillAmount = time / _maxTime;
             }
-            else if(time <= 0)
-            {
-                isTime = true;
+            else
                 isTimes = false;
-            }
         }
     }
 
