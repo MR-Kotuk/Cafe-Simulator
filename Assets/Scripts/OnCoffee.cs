@@ -13,7 +13,7 @@ public class OnCoffee : MonoBehaviour
     [SerializeField] private GameContr _gameContr;
 
 
-    private bool isInMaker = false;
+    public bool isInMaker = false;
     private bool isMilk = false;
     private bool isPoulCoffee = false;
 

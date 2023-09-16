@@ -5,18 +5,23 @@ using UnityEngine;
 public class SoundControl : MonoBehaviour
 {
     [SerializeField] private RandomOrder _randomOrder;
+    [SerializeField] private OnCoffee _onCoffee;
     [SerializeField] private AudioSource _buttonSFX;
     [SerializeField] private AudioSource _coffeeMakerSFX;
     [SerializeField] private AudioSource _poulSFX;
 
     public void OnButtonAnCoffeeMaker()
     {
-        _buttonSFX.Play();
+        if(_onCoffee.isInMaker)
+            _buttonSFX.Play();
     }
 
     public void OnPoulButton()
     {
-        _coffeeMakerSFX.Play();
-        _poulSFX.Play();
+        if (_onCoffee.isInMaker)
+        {
+            _coffeeMakerSFX.Play();
+            _poulSFX.Play();
+        }
     }
 }

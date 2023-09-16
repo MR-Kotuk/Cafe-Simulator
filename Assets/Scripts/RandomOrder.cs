@@ -25,7 +25,7 @@ public class RandomOrder : MonoBehaviour
     [SerializeField] private GameObject _cola, _soda, _donut, _desert;
 
     private int _orderNum;
-    private float time;
+    public float time;
     private readonly float _maxTime = 100;
 
     private void Start()
@@ -99,7 +99,7 @@ public class RandomOrder : MonoBehaviour
     {
         while (isTimes)
         {
-            if (time > 0)
+            if (time >= 0)
             {
                 yield return new WaitForSeconds(0.2f);
                 time -= 0.5f;

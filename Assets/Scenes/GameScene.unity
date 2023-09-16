@@ -6859,6 +6859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _randomOrder: {fileID: 953613498}
+  _onCoffee: {fileID: 1906436273}
   _buttonSFX: {fileID: 279051390}
   _coffeeMakerSFX: {fileID: 1054020101}
   _poulSFX: {fileID: 607680746}
@@ -8818,6 +8819,7 @@ MonoBehaviour:
   isOrder: 0
   isDone: 0
   isGame: 0
+  isTimes: 0
   _gameContr: {fileID: 776654008}
   _timeBar: {fileID: 42450151}
   _orders:
@@ -8834,6 +8836,7 @@ MonoBehaviour:
   _soda: {fileID: 1402491272}
   _donut: {fileID: 1369038333}
   _desert: {fileID: 390450140}
+  time: 0
 --- !u!4 &953613499
 Transform:
   m_ObjectHideFlags: 0
@@ -17704,6 +17707,7 @@ MonoBehaviour:
   _animMilk: {fileID: 460293931}
   _randomOrder: {fileID: 953613498}
   _gameContr: {fileID: 776654008}
+  isInMaker: 0
 --- !u!65 &1906436274
 BoxCollider:
   m_ObjectHideFlags: 0

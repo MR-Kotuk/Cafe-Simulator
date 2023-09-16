@@ -40,6 +40,11 @@ public class MoveClient : MonoBehaviour
 
     private void Update()
     {
+        if (_randomOrder.time <= 0)
+        {
+            _randomOrder.isOrder = false;
+            ExitAtCafe();
+        }
         if (_randomOrder.isDone && !isExit && !isMove)
         {
             _randomOrder.isDone = false;
@@ -124,6 +129,8 @@ public class MoveClient : MonoBehaviour
 
     private void ExitAtCafe()
     {
+        Debug.Log("Exit");
+
         _anim.SetBool("isUp", false);
         _anim.SetBool("isMove", true);
 
