@@ -44,8 +44,6 @@ public class RandomOrder : MonoBehaviour
 
     private void Update()
     {
-        if (!isTimes)
-            time = _maxTime;
 
         if (isGame)
             CreateClients();
@@ -57,11 +55,6 @@ public class RandomOrder : MonoBehaviour
         {
             _orderUI.SetActive(false);
             _orders[_orderNum].SetActive(false);
-
-            if (time > 0 && isDone)
-                _gameContr.ProbabilityTips = _gameContr.ProbabilityTips / 2;
-            else
-                _gameContr.ProbabilityTips = 100;
         }
     }
     public void CreateOrder()
@@ -102,7 +95,7 @@ public class RandomOrder : MonoBehaviour
             if (time >= 0)
             {
                 yield return new WaitForSeconds(0.2f);
-                time -= 0.5f;
+                time -= 0.4f;
                 _timeBar.fillAmount = time / _maxTime;
             }
             else

@@ -22,6 +22,7 @@ public class GameContr : MonoBehaviour
     [SerializeField] private int _limitTips;
 
     [SerializeField] private Payments _payments;
+    [SerializeField] private RandomOrder _randomOrder;
 
     private int _range;
     private int _profit;
@@ -75,47 +76,50 @@ public class GameContr : MonoBehaviour
 
     public void ClientPay()
     {
-        if (OrderObj.gameObject.tag == MyOrderObj.gameObject.tag)
+        if (_randomOrder.isTimes)
         {
-            switch (OrderObj.gameObject.tag)
+            if (OrderObj.gameObject.tag == MyOrderObj.gameObject.tag)
             {
-                case "cola":
-                    _profit += _payments._payCola;
-                    break;
-                case "soda":
-                    _profit += _payments._paySoda;
-                    break;
-                case "coffee":
-                    _profit += _payments._payCoffee;
-                    break;
-                case "coffee+":
-                    _profit += _payments._payCoffeePlus;
-                    break;
-                case "donut":
-                    _profit += _payments._payDonut;
-                    break;
-                case "desert":
-                    _profit += _payments._payDesert;
-                    break;
-            }
-            if (Random.Range(0, ProbabilityTips) == 0)
-            {
-                _tips = Random.Range(5, _limitTips);
-
-                if (_tips > 0)
+                switch (OrderObj.gameObject.tag)
                 {
-                    _tipsText.text = "+ " + _tips + " is Tips";
-                    Invoke("Tips", 3f);
+                    case "cola":
+                        _profit += _payments._payCola;
+                        break;
+                    case "soda":
+                        _profit += _payments._paySoda;
+                        break;
+                    case "coffee":
+                        _profit += _payments._payCoffee;
+                        break;
+                    case "coffee+":
+                        _profit += _payments._payCoffeePlus;
+                        break;
+                    case "donut":
+                        _profit += _payments._payDonut;
+                        break;
+                    case "desert":
+                        _profit += _payments._payDesert;
+                        break;
                 }
-                
-                _profit += _tips;
+                if (Random.Range(0, ProbabilityTips) == 0)
+                {
+                    _tips = Random.Range(5, _limitTips);
+
+                    if (_tips > 0)
+                    {
+                        _tipsText.text = "+ " + _tips + " Чаевые";
+                        Invoke("Tips", 3f);
+                    }
+
+                    _profit += _tips;
+                }
+                SavePrefs();
             }
-            SavePrefs();
-        }
-        else
-        {
-            _imageAngry.SetActive(true);
-            Invoke("AngryImage", 2f);
+            else
+            {
+                _imageAngry.SetActive(true);
+                Invoke("AngryImage", 2f);
+            }
         }
     }
 

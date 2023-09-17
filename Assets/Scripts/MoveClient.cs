@@ -137,6 +137,7 @@ public class MoveClient : MonoBehaviour
         isExit = true;
         isMoveToDoor = true;
         isMove = true;
+        _randomOrder.time = 100;
         _randomOrder.isTimes = false;
         _randomOrder.isDone = false;
         _randomOrder.isGame = true;

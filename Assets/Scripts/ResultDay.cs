@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -36,8 +36,8 @@ public class ResultDay : MonoBehaviour
 
     private void Update()
     {
-        _myMoneyText.text = $"{_profit}";
-        _workDays.text = $"{_howWorkDays}";
+        _myMoneyText.text = $"+ {_profit}";
+        _workDays.text = $"День: {_howWorkDays}";
     }
 
     private void X2()
