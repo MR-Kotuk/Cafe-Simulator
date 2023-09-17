@@ -6,6 +6,8 @@ public class MoveClient : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
 
+    [SerializeField] private AudioSource _moveSFX;
+
     [SerializeField] private Vector3[] _randomPos = new Vector3[3];
 
     [SerializeField] private GameObject[] _skins = new GameObject[6];
