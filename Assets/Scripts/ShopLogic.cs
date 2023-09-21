@@ -10,6 +10,7 @@ public class ShopLogic : MonoBehaviour
 
     private int myMoney;
     private int _buyTrue = 1;
+    private int _nextMenu = 0;
     private void Update()
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
@@ -67,6 +68,13 @@ public class ShopLogic : MonoBehaviour
     public void NextMenu()
     {
         for (int i = 0; i < _menu.Length; i++)
-            _menu[i].SetActive(!_menu[i].activeInHierarchy);
+            _menu[i].SetActive(false);
+
+        _nextMenu++;
+
+        if (_nextMenu >= _menu.Length)
+            _nextMenu = 0;
+
+        _menu[_nextMenu].SetActive(true);
     }
 }

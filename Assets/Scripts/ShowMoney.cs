@@ -9,11 +9,10 @@ public class ShowMoney : MonoBehaviour
 
     private void Start()
     {
-        int myMoney, myProfit;
-        myMoney = PlayerPrefs.GetInt("MyMoney");
-        myProfit = PlayerPrefs.GetInt("Profit");
+        int myMoney;
+        myMoney = PlayerPrefs.GetInt("MyMoney") + PlayerPrefs.GetInt("Profit");
 
-        PlayerPrefs.SetInt("MyMoney", myMoney + myProfit);
+        PlayerPrefs.SetInt("MyMoney", myMoney);
     }
     private void Update()
     {
