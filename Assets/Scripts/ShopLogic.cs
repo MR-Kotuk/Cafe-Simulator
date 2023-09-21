@@ -11,6 +11,12 @@ public class ShopLogic : MonoBehaviour
     private int myMoney;
     private int _buyTrue = 1;
     private int _nextMenu = 0;
+    private void Start()
+    {
+        PlayerPrefs.SetInt("Color 0", 1);
+        PlayerPrefs.SetInt("Table 0", 1);
+        PlayerPrefs.SetInt("Chair 0", 1);
+    }
     private void Update()
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
@@ -38,31 +44,54 @@ public class ShopLogic : MonoBehaviour
         }
     }
 
+    public void OnBuyCustom(int num)
+    {
+        if(num >= 10)
+            BuyCustom("Table", "Tables", num - 10, 150);
+        else
+            BuyCustom("Chair", "Chairs", num, 150);
+    }
+
     public void OnBuyColor(int numColor)
     {
-        if(PlayerPrefs.GetInt($"Color {numColor}") == _buyTrue)
-            PlayerPrefs.SetInt("ColorWalls", numColor);
-        else if (myMoney >= _payments._unblockPayColor[numColor])
+        BuyCustom("Color", "ColorWalls", numColor, 150);
+    }
+
+    private void BuyCustom(string nameObj, string nameSelectObj, int num, int _pay)
+    {
+        if (PlayerPrefs.GetInt($"{nameObj} {num}") == _buyTrue)
+            PlayerPrefs.SetInt(nameSelectObj, num);
+        else if (myMoney >= _pay)
         {
-            PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPayColor[numColor]);
-            PlayerPrefs.SetInt($"Color {numColor}", _buyTrue);
-            PlayerPrefs.SetInt("ColorWalls", numColor);
+            PlayerPrefs.SetInt("MyMoney", myMoney -= _pay);
+            PlayerPrefs.SetInt($"{nameObj} {num}", _buyTrue);
+            PlayerPrefs.SetInt(nameSelectObj, num);
         }
     }
-    public void OnBuyReklamColor(int numColor)
+
+    private string _name;
+    public void TypeOfReklamBuy(string name)
     {
-        if (PlayerPrefs.GetInt($"Color {numColor}") != _buyTrue)
+        _name = name;
+    }
+    public void OnBuyReklam(int num)
+    {
+        Debug.Log(_name);
+        Debug.Log(num);
+        if (num >= 10)
+            num -= 10;
+        if (PlayerPrefs.GetInt($"{_name} {num}") != _buyTrue)
         {
-            //Add Reklam Logic
-
-
-
-
-            PlayerPrefs.SetInt($"Color {numColor}", _buyTrue);
+            ShowReklam();
+            PlayerPrefs.SetInt($"{_name} {num}", _buyTrue);
         }
 
-
-        PlayerPrefs.SetInt("ColorWalls", numColor);
+        if (_name == "Color")
+            PlayerPrefs.SetInt("ColorWalls", num);
+        else if (_name == "Chair")
+            PlayerPrefs.SetInt("Chairs", num);
+        else if (_name == "Table")
+            PlayerPrefs.SetInt("Tables", num);
     }
 
     public void NextMenu()
@@ -76,5 +105,11 @@ public class ShopLogic : MonoBehaviour
             _nextMenu = 0;
 
         _menu[_nextMenu].SetActive(true);
+    }
+
+    private void ShowReklam()
+    {
+        Debug.Log("Reklam");
+        //Add Reklam Logic
     }
 }

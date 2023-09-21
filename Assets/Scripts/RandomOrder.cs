@@ -18,11 +18,14 @@ public class RandomOrder : MonoBehaviour
     [SerializeField] private List<GameObject> _orders;
     [SerializeField] private List<GameObject> _ordersObjects;
 
+    [SerializeField] private List<GameObject> _chairsCustom;
+    [SerializeField] private List<GameObject> _tablesCustom;
+
     [SerializeField] private GameObject _orderUI;
     [SerializeField] private GameObject _client;
 
-    [SerializeField] private GameObject _colaOrder, _sodaOrder, _donutOrder, _desertOrder;
-    [SerializeField] private GameObject _cola, _soda, _donut, _desert;
+    [SerializeField] private List<GameObject> _objOrder, _obj;
+    [SerializeField] private List<string> _objName;
 
     private int _orderNum;
     public float time;
@@ -33,10 +36,8 @@ public class RandomOrder : MonoBehaviour
         time = _maxTime;
         isTimes = true;
 
-        AddObjectsToList(_colaOrder, _cola, "cola");
-        AddObjectsToList(_sodaOrder, _soda, "soda");
-        AddObjectsToList(_donutOrder, _donut, "donut");
-        AddObjectsToList(_desertOrder, _desert, "desert");
+        for(int i = 0; i < _objOrder.Count; i++)
+            AddObjectsToList(_objOrder[i], _obj[i], _objName[i]);
 
         for (int i = 0; i < _ordersObjects.Count; i++)
             _ordersObjects[i].SetActive(true);

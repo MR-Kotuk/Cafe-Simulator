@@ -15,6 +15,7 @@ public class GameContr : MonoBehaviour
     [SerializeField] private TMP_Text _workDays;
 
     [SerializeField] private Material[] _materials;
+    [SerializeField] private List<GameObject> _chairs, _tables;
 
     [SerializeField] private GameObject _imageAngry;
     [SerializeField] private GameObject _walls, _ceiling;
@@ -32,9 +33,14 @@ public class GameContr : MonoBehaviour
     private void Start()
     {
         int numColor = PlayerPrefs.GetInt("ColorWalls");
+        int numChairs = PlayerPrefs.GetInt("Chairs");
+        int numTables = PlayerPrefs.GetInt("Tables");
 
         NewColor(_materials[numColor]);
+        NewCustomObj(_chairs, numChairs);
+        NewCustomObj(_tables, numTables);
 
+        Debug.Log(numTables);
         _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
 
@@ -42,6 +48,14 @@ public class GameContr : MonoBehaviour
         _howDays++;
 
         WorkTime();
+    }
+
+    private void NewCustomObj(List<GameObject> _obj, int num)
+    {
+        for (int i = 0; i < _obj.Count; i++)
+            _obj[i].SetActive(false);
+
+        _obj[num].SetActive(true);
     }
 
     private void NewColor(Material material)
