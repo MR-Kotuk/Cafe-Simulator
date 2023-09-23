@@ -40,7 +40,6 @@ public class GameContr : MonoBehaviour
         NewCustomObj(_chairs, numChairs);
         NewCustomObj(_tables, numTables);
 
-        Debug.Log(numTables);
         _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
 
@@ -65,8 +64,9 @@ public class GameContr : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
             _profit += 100;
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             PlayerPrefs.DeleteAll();
@@ -151,16 +151,16 @@ public class GameContr : MonoBehaviour
         switch (_howDays)
         {
             case < 5:
-                StartCoroutine(TimeToEnd(150f));
+                StartCoroutine(TimeToEnd(120f));
                 break;
             case < 15:
-                StartCoroutine(TimeToEnd(300f));
+                StartCoroutine(TimeToEnd(180f));
                 break;
             case < 30:
-                StartCoroutine(TimeToEnd(600f));
+                StartCoroutine(TimeToEnd(240f));
                 break;
             case > 30:
-                StartCoroutine(TimeToEnd(1200f));
+                StartCoroutine(TimeToEnd(300f));
                 break;
         }
     }

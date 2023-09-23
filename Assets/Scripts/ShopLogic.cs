@@ -1,21 +1,38 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopLogic : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _eat;
+
+    [SerializeField] private List<TMP_Text> _isBuyChairsText;
+    [SerializeField] private List<TMP_Text> _isBuyTablesText;
+    [SerializeField] private List<TMP_Text> _isBuyColorsText;
+    [SerializeField] private List<TMP_Text> _isBuyEatText;
+    [SerializeField] private List<GameObject> _reklamImageColor; 
+
+    [SerializeField] private List<string> _nameObj, _nameSelectObj, _eatName;
+
     [SerializeField] private GameObject[] _menu;
+
     [SerializeField] private Payments _payments;
 
+    [SerializeField] private int _payCustom;
+
     private int myMoney;
-    private int _buyTrue = 1;
     private int _nextMenu = 0;
+    private const int _buyTrue = 1;
+
+    private string _name;
+
     private void Start()
     {
-        PlayerPrefs.SetInt("Color 0", 1);
-        PlayerPrefs.SetInt("Table 0", 1);
-        PlayerPrefs.SetInt("Chair 0", 1);
+        _nextMenu = 0;
+        for (int i = 0; i < _nameObj.Count; i++)
+            PlayerPrefs.SetInt($"{_nameObj[i]} 0", _buyTrue);
+
     }
     private void Update()
     {
@@ -23,12 +40,35 @@ public class ShopLogic : MonoBehaviour
 
         for (int i = 0; i < _eat.Count; i++)
         {
-            if (myMoney >= _payments._unblockPay[i])
+            if (PlayerPrefs.GetInt(_eatName[i]) == _buyTrue)
+                _isBuyEatText[i].text = "Куплено";
+         
+            if (myMoney >= _payments._unblockPay[i] || PlayerPrefs.GetInt(_eatName[i]) == _buyTrue)
                 _eat[i].SetActive(false);
             else
                 _eat[i].SetActive(true);
         }
 
+        IsBuyText(_isBuyColorsText, _nameObj[0], _nameSelectObj[0]);
+        IsBuyText(_isBuyChairsText, _nameObj[1], _nameSelectObj[1]);
+        IsBuyText(_isBuyTablesText, _nameObj[2], _nameSelectObj[2]);
+
+    }
+
+    private void IsBuyText(List<TMP_Text> text, string name, string nameSelect)
+    {
+        for (int y = 0; y < text.Count; y++)
+            IsBuyText(text[y], y, name, nameSelect);
+    }
+    private void IsBuyText(TMP_Text text, int num, string name, string nameSelect)
+    {
+        if (PlayerPrefs.GetInt($"{name} {num}") == _buyTrue)
+        {
+            if (PlayerPrefs.GetInt(nameSelect) == num)
+                text.text = "Исп.";
+            else
+                text.text = "Куплено";
+        }
     }
 
     public void OnBuy(string name)
@@ -47,14 +87,14 @@ public class ShopLogic : MonoBehaviour
     public void OnBuyCustom(int num)
     {
         if(num >= 10)
-            BuyCustom("Table", "Tables", num - 10, 150);
+            BuyCustom(_nameObj[2], _nameSelectObj[2], num - 10, _payCustom);
         else
-            BuyCustom("Chair", "Chairs", num, 150);
+            BuyCustom(_nameObj[1], _nameSelectObj[1], num, _payCustom);
     }
 
     public void OnBuyColor(int numColor)
     {
-        BuyCustom("Color", "ColorWalls", numColor, 150);
+        BuyCustom(_nameObj[0], _nameSelectObj[0], numColor, _payCustom);
     }
 
     private void BuyCustom(string nameObj, string nameSelectObj, int num, int _pay)
@@ -69,15 +109,12 @@ public class ShopLogic : MonoBehaviour
         }
     }
 
-    private string _name;
     public void TypeOfReklamBuy(string name)
     {
         _name = name;
     }
     public void OnBuyReklam(int num)
     {
-        Debug.Log(_name);
-        Debug.Log(num);
         if (num >= 10)
             num -= 10;
         if (PlayerPrefs.GetInt($"{_name} {num}") != _buyTrue)
@@ -86,12 +123,9 @@ public class ShopLogic : MonoBehaviour
             PlayerPrefs.SetInt($"{_name} {num}", _buyTrue);
         }
 
-        if (_name == "Color")
-            PlayerPrefs.SetInt("ColorWalls", num);
-        else if (_name == "Chair")
-            PlayerPrefs.SetInt("Chairs", num);
-        else if (_name == "Table")
-            PlayerPrefs.SetInt("Tables", num);
+        for(int i = 0; i < _nameObj.Count; i++)
+            if (_name == _nameObj[i])
+                PlayerPrefs.SetInt(_nameSelectObj[i], num);
     }
 
     public void NextMenu()
