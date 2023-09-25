@@ -10,6 +10,7 @@ public class ShopLogic : MonoBehaviour
     [SerializeField] private List<TMP_Text> _isBuyChairsText;
     [SerializeField] private List<TMP_Text> _isBuyTablesText;
     [SerializeField] private List<TMP_Text> _isBuyColorsText;
+    [SerializeField] private List<TMP_Text> _isBuyDecorText;
     [SerializeField] private List<TMP_Text> _isBuyEatText;
     [SerializeField] private List<GameObject> _reklamImageColor; 
 
@@ -52,6 +53,7 @@ public class ShopLogic : MonoBehaviour
         IsBuyText(_isBuyColorsText, _nameObj[0], _nameSelectObj[0]);
         IsBuyText(_isBuyChairsText, _nameObj[1], _nameSelectObj[1]);
         IsBuyText(_isBuyTablesText, _nameObj[2], _nameSelectObj[2]);
+        IsBuyText(_isBuyDecorText, _nameObj[3], _nameSelectObj[3]);
 
     }
 
@@ -86,15 +88,21 @@ public class ShopLogic : MonoBehaviour
 
     public void OnBuyCustom(int num)
     {
-        if(num >= 10)
-            BuyCustom(_nameObj[2], _nameSelectObj[2], num - 10, _payCustom);
-        else
-            BuyCustom(_nameObj[1], _nameSelectObj[1], num, _payCustom);
-    }
-
-    public void OnBuyColor(int numColor)
-    {
-        BuyCustom(_nameObj[0], _nameSelectObj[0], numColor, _payCustom);
+        switch (_name)
+        {
+            case "Color":
+                BuyCustom(_nameObj[0], _nameSelectObj[0], num, _payCustom);
+                break;
+            case "Chair":
+                BuyCustom(_nameObj[1], _nameSelectObj[1], num, _payCustom);
+                break;
+            case "Table":
+                BuyCustom(_nameObj[2], _nameSelectObj[2], num, _payCustom);
+                break;
+            case "Decor":
+                BuyCustom(_nameObj[3], _nameSelectObj[3], num, _payCustom);
+                break;
+        }
     }
 
     private void BuyCustom(string nameObj, string nameSelectObj, int num, int _pay)
@@ -109,14 +117,12 @@ public class ShopLogic : MonoBehaviour
         }
     }
 
-    public void TypeOfReklamBuy(string name)
+    public void TypeOfBuy(string name)
     {
         _name = name;
     }
     public void OnBuyReklam(int num)
     {
-        if (num >= 10)
-            num -= 10;
         if (PlayerPrefs.GetInt($"{_name} {num}") != _buyTrue)
         {
             ShowReklam();

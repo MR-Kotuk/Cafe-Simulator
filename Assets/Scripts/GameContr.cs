@@ -14,11 +14,7 @@ public class GameContr : MonoBehaviour
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private TMP_Text _workDays;
 
-    [SerializeField] private Material[] _materials;
-    [SerializeField] private List<GameObject> _chairs, _tables;
-
     [SerializeField] private GameObject _imageAngry;
-    [SerializeField] private GameObject _walls, _ceiling;
 
     [SerializeField] private int _limitTips;
 
@@ -32,14 +28,6 @@ public class GameContr : MonoBehaviour
 
     private void Start()
     {
-        int numColor = PlayerPrefs.GetInt("ColorWalls");
-        int numChairs = PlayerPrefs.GetInt("Chairs");
-        int numTables = PlayerPrefs.GetInt("Tables");
-
-        NewColor(_materials[numColor]);
-        NewCustomObj(_chairs, numChairs);
-        NewCustomObj(_tables, numTables);
-
         _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
 
@@ -49,19 +37,6 @@ public class GameContr : MonoBehaviour
         WorkTime();
     }
 
-    private void NewCustomObj(List<GameObject> _obj, int num)
-    {
-        for (int i = 0; i < _obj.Count; i++)
-            _obj[i].SetActive(false);
-
-        _obj[num].SetActive(true);
-    }
-
-    private void NewColor(Material material)
-    {
-        _walls.GetComponent<MeshRenderer>().material = material;
-        _ceiling.GetComponent<MeshRenderer>().material = material;
-    }
     private void Update()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -151,24 +126,18 @@ public class GameContr : MonoBehaviour
         switch (_howDays)
         {
             case < 5:
-                StartCoroutine(TimeToEnd(120f));
+                Invoke("EndGame", 120f);
                 break;
             case < 15:
-                StartCoroutine(TimeToEnd(180f));
+                Invoke("EndGame", 180f);
                 break;
             case < 30:
-                StartCoroutine(TimeToEnd(240f));
+                Invoke("EndGame", 240f);
                 break;
             case > 30:
-                StartCoroutine(TimeToEnd(300f));
+                Invoke("EndGame", 300f);
                 break;
         }
-    }
-
-    private IEnumerator TimeToEnd(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        EndGame();
     }
 
     public void SavePrefs()

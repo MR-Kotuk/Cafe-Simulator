@@ -348,6 +348,7 @@
 "Assets/GUI PRO Kit - Simple Casual/Scripts/PanelControlSimpleCasual.cs"
 "Assets/GUI PRO Kit - Simple Casual/Scripts/PanelSimpleCasual.cs"
 "Assets/Scripts/GameContr.cs"
+"Assets/Scripts/LoadObjToGame.cs"
 "Assets/Scripts/MenuUI.cs"
 "Assets/Scripts/MoveClient.cs"
 "Assets/Scripts/OnCoffee.cs"

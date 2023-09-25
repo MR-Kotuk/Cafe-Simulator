@@ -81,6 +81,7 @@
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXProjectileScript.cs" />
     <Compile Include="Assets\Scripts\MoveClient.cs" />
     <Compile Include="Assets\Scripts\OnSoda.cs" />
+    <Compile Include="Assets\Scripts\LoadObjToGame.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXLoopScript.cs" />
     <Compile Include="Assets\Scripts\SoundControl.cs" />
     <Compile Include="Assets\GUI PRO Kit - Simple Casual\Scripts\PanelSimpleCasual.cs" />
