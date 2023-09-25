@@ -7,7 +7,7 @@ public class LoadObjToGame : MonoBehaviour
 
     [SerializeField] private Material[] _materials;
 
-    [SerializeField] private List<GameObject> _chairs, _tables;
+    [SerializeField] private List<GameObject> _chairs, _tables, _decor;
 
     [SerializeField] private GameObject _walls, _ceiling;
 
@@ -16,11 +16,12 @@ public class LoadObjToGame : MonoBehaviour
         int numColor = PlayerPrefs.GetInt("ColorWalls");
         int numChairs = PlayerPrefs.GetInt("Chairs");
         int numTables = PlayerPrefs.GetInt("Tables");
+        int numDecors = PlayerPrefs.GetInt("Decors");
 
-        Debug.Log(numChairs);
         NewColor(_materials[numColor]);
         NewCustomObj(_chairs, numChairs);
         NewCustomObj(_tables, numTables);
+        NewCustomObj(_decor, numDecors);
     }
 
     private void NewColor(Material material)

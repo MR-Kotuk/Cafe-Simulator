@@ -5129,13 +5129,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 429081500}
-  - {fileID: 1540081739}
-  - {fileID: 2078820403}
   - {fileID: 970449438}
-  - {fileID: 145923851}
-  - {fileID: 1102126226}
+  - {fileID: 2078820403}
   - {fileID: 488864680}
+  - {fileID: 1540081739}
+  - {fileID: 1102126226}
+  - {fileID: 145923851}
   - {fileID: 497477769}
   m_Father: {fileID: 68085071}
   m_RootOrder: -1
@@ -6648,7 +6647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429081500}
   m_Layer: 0
-  m_Name: custom
+  m_Name: Decor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6661,8 +6660,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429081499}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.6721368, y: -1.048875, z: 6.4281654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6670,7 +6669,7 @@ Transform:
   - {fileID: 1748278053}
   - {fileID: 2113820}
   - {fileID: 1959544777}
-  m_Father: {fileID: 297230045}
+  m_Father: {fileID: 955462543}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &438196584
@@ -11847,6 +11846,15 @@ MonoBehaviour:
   - {fileID: 725559474}
   - {fileID: 252702083}
   - {fileID: 1529654179}
+  _decor:
+  - {fileID: 429081499}
+  - {fileID: 970449437}
+  - {fileID: 2078820402}
+  - {fileID: 488864679}
+  - {fileID: 1540081738}
+  - {fileID: 1102126225}
+  - {fileID: 145923850}
+  - {fileID: 497477768}
   _walls: {fileID: 1280726539}
   _ceiling: {fileID: 1108797188}
 --- !u!1001 &798010211
@@ -15065,8 +15073,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 506286761}
+  - {fileID: 429081500}
   - {fileID: 2135602669}
+  - {fileID: 506286761}
   - {fileID: 925530238}
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -15446,7 +15455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &970449438
 Transform:
   m_ObjectHideFlags: 0
