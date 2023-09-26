@@ -11,6 +11,7 @@ public class ShopLogic : MonoBehaviour
     [SerializeField] private List<TMP_Text> _isBuyTablesText;
     [SerializeField] private List<TMP_Text> _isBuyColorsText;
     [SerializeField] private List<TMP_Text> _isBuyDecorText;
+    [SerializeField] private List<TMP_Text> _isBuyLampText;
     [SerializeField] private List<TMP_Text> _isBuyEatText;
     [SerializeField] private List<GameObject> _reklamImageColor; 
 
@@ -23,7 +24,7 @@ public class ShopLogic : MonoBehaviour
     [SerializeField] private int _payCustom;
 
     private int myMoney;
-    private int _nextMenu = 0;
+    private int _nextMenu;
     private const int _buyTrue = 1;
 
     private string _name;
@@ -31,6 +32,11 @@ public class ShopLogic : MonoBehaviour
     private void Start()
     {
         _nextMenu = 0;
+
+        for (int i = 0; i < _menu.Length; i++)
+            _menu[i].SetActive(false);
+        _menu[_nextMenu].SetActive(true);
+
         for (int i = 0; i < _nameObj.Count; i++)
             PlayerPrefs.SetInt($"{_nameObj[i]} 0", _buyTrue);
 
@@ -54,6 +60,7 @@ public class ShopLogic : MonoBehaviour
         IsBuyText(_isBuyChairsText, _nameObj[1], _nameSelectObj[1]);
         IsBuyText(_isBuyTablesText, _nameObj[2], _nameSelectObj[2]);
         IsBuyText(_isBuyDecorText, _nameObj[3], _nameSelectObj[3]);
+        IsBuyText(_isBuyLampText, _nameObj[4], _nameSelectObj[4]);
 
     }
 
@@ -102,6 +109,9 @@ public class ShopLogic : MonoBehaviour
             case "Decor":
                 BuyCustom(_nameObj[3], _nameSelectObj[3], num, _payCustom);
                 break;
+            case "Lamp":
+                BuyCustom(_nameObj[4], _nameSelectObj[4], num, _payCustom);
+                break;
         }
     }
 
@@ -134,15 +144,20 @@ public class ShopLogic : MonoBehaviour
                 PlayerPrefs.SetInt(_nameSelectObj[i], num);
     }
 
-    public void NextMenu()
+    public void NextMenu(bool isNext)
     {
         for (int i = 0; i < _menu.Length; i++)
             _menu[i].SetActive(false);
 
-        _nextMenu++;
+        if (isNext)
+            _nextMenu++;
+        else
+            _nextMenu--;
 
         if (_nextMenu >= _menu.Length)
             _nextMenu = 0;
+        else if (_nextMenu < 0)
+            _nextMenu = _menu.Length - 1;
 
         _menu[_nextMenu].SetActive(true);
     }
