@@ -5,20 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
+    [SerializeField] private AudioSource _onButton;
+
     public void OnToHomeButton()
     {
-        PlayerPrefs.Save();
-        SceneManager.LoadScene("HomeScene");
+        NextScene("HomeScene");
     }
     public void OnToShopButton()
     {
-        PlayerPrefs.Save();
-        SceneManager.LoadScene("ShopScene");
+        NextScene("ShopScene");
     }
 
     public void OnToGameButton()
     {
+        NextScene("GameScene");
+    }
+
+    private void NextScene(string nameScene)
+    {
+        _onButton.Play();
         PlayerPrefs.Save();
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(nameScene);
     }
 }

@@ -131,8 +131,6 @@ public class MoveClient : MonoBehaviour
 
     private void ExitAtCafe()
     {
-        Debug.Log("Exit");
-
         _anim.SetBool("isUp", false);
         _anim.SetBool("isMove", true);
 

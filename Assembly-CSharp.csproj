@@ -68,6 +68,7 @@
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXTarget.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXFireProjectile.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXMouseOrbit.cs" />
+    <Compile Include="Assets\Scripts\SoundActive.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\VFX Library\PEButtonScript.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXButtonScript.cs" />
     <Compile Include="Assets\Scripts\GameContr.cs" />

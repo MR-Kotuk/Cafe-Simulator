@@ -8,10 +8,10 @@ public class SoundControl : MonoBehaviour
     [SerializeField] private OnCoffee _onCoffee;
 
     [SerializeField] private Animator _anim;
-    [SerializeField] private AudioSource _buttonSFX;
-    [SerializeField] private AudioSource _coffeeMakerSFX;
-    [SerializeField] private AudioSource _poulSFX;
-    [SerializeField] private AudioSource _timerSFX;
+
+    [SerializeField] private AudioSource _buttonSFX, _coffeeMakerSFX, _poulSFX, _timerSFX;
+    [SerializeField] private AudioSource _buttonSFX2;
+    [SerializeField] private AudioSource _getMoneySFX, _getTipsSFX;
 
     private bool isTime = true;
     public void OnButtonAnCoffeeMaker()
@@ -26,6 +26,22 @@ public class SoundControl : MonoBehaviour
         {
             _coffeeMakerSFX.Play();
             _poulSFX.Play();
+        }
+    }
+
+    public void GameSFX(string sfxName)
+    {
+        switch (sfxName)
+        {
+            case "GetTips":
+                _getTipsSFX.Play();
+                break;
+            case "GetMoney":
+                _getMoneySFX.Play();
+                break;
+            case "OnButton":
+                _buttonSFX2.Play();
+                break;
         }
     }
 

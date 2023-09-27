@@ -5,21 +5,21 @@ using TMPro;
 
 public class ShopLogic : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _eat;
-
     [SerializeField] private List<TMP_Text> _isBuyChairsText;
     [SerializeField] private List<TMP_Text> _isBuyTablesText;
     [SerializeField] private List<TMP_Text> _isBuyColorsText;
     [SerializeField] private List<TMP_Text> _isBuyDecorText;
     [SerializeField] private List<TMP_Text> _isBuyLampText;
     [SerializeField] private List<TMP_Text> _isBuyEatText;
-    [SerializeField] private List<GameObject> _reklamImageColor; 
+    [SerializeField] private List<GameObject> _reklamImageColor;
+    [SerializeField] private List<GameObject> _eat;
 
     [SerializeField] private List<string> _nameObj, _nameSelectObj, _eatName;
 
     [SerializeField] private GameObject[] _menu;
 
     [SerializeField] private Payments _payments;
+    [SerializeField] private AudioSource _paySFX, _buttonSFX;
 
     [SerializeField] private int _payCustom;
 
@@ -84,7 +84,9 @@ public class ShopLogic : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(name) != _buyTrue)
         {
-            for(int i = 0; i < _eat.Count; i++)
+            _paySFX.Play();
+
+            for (int i = 0; i < _eat.Count; i++)
                 if(name == _eat[i].tag)
                     PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[i]);
 
@@ -121,6 +123,8 @@ public class ShopLogic : MonoBehaviour
             PlayerPrefs.SetInt(nameSelectObj, num);
         else if (myMoney >= _pay)
         {
+            _paySFX.Play();
+
             PlayerPrefs.SetInt("MyMoney", myMoney -= _pay);
             PlayerPrefs.SetInt($"{nameObj} {num}", _buyTrue);
             PlayerPrefs.SetInt(nameSelectObj, num);
@@ -146,6 +150,8 @@ public class ShopLogic : MonoBehaviour
 
     public void NextMenu(bool isNext)
     {
+        _buttonSFX.Play();
+
         for (int i = 0; i < _menu.Length; i++)
             _menu[i].SetActive(false);
 

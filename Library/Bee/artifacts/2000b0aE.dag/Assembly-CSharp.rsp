@@ -359,6 +359,7 @@
 "Assets/Scripts/ResultDay.cs"
 "Assets/Scripts/ShopLogic.cs"
 "Assets/Scripts/ShowMoney.cs"
+"Assets/Scripts/SoundActive.cs"
 "Assets/Scripts/SoundControl.cs"
 -langversion:9.0
 

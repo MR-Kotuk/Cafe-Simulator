@@ -20,6 +20,7 @@ public class GameContr : MonoBehaviour
 
     [SerializeField] private Payments _payments;
     [SerializeField] private RandomOrder _randomOrder;
+    [SerializeField] private SoundControl _soundControl;
 
     private int _range;
     private int _profit;
@@ -69,6 +70,8 @@ public class GameContr : MonoBehaviour
         {
             if (OrderObj.gameObject.tag == MyOrderObj.gameObject.tag)
             {
+                _soundControl.GameSFX("GetMoney");
+
                 switch (OrderObj.gameObject.tag)
                 {
                     case "cola":
@@ -96,6 +99,7 @@ public class GameContr : MonoBehaviour
 
                     if (_tips > 0)
                     {
+                        _soundControl.GameSFX("GetTips");
                         _tipsText.text = "+ " + _tips + " Чаевые";
                         Invoke("Tips", 3f);
                     }
