@@ -22,12 +22,14 @@ public class MoveClient : MonoBehaviour
     [SerializeField] private float _distToBar, _distToDoor, _exitDistToDoor;
 
     private int _howOrders = 0;
-    private bool isExit;
+    private bool isExit, isExitOne;
     private bool isMove, isMoveToDoor;
     private Vector3 _exitPosMove;
 
     private void Awake()
     {
+        isExitOne = true;
+
         RandomSkine();
 
         _exitPosMove = _randomPos[RandomNum(1, _randomPos.Length)];
@@ -131,16 +133,21 @@ public class MoveClient : MonoBehaviour
 
     private void ExitAtCafe()
     {
-        _anim.SetBool("isUp", false);
-        _anim.SetBool("isMove", true);
+        if (isExitOne)
+        {
+            isExitOne = false;
 
-        isExit = true;
-        isMoveToDoor = true;
-        isMove = true;
-        _randomOrder.time = 100;
-        _randomOrder.isTimes = false;
-        _randomOrder.isDone = false;
-        _randomOrder.isGame = true;
+            _anim.SetBool("isUp", false);
+            _anim.SetBool("isMove", true);
+
+            isExit = true;
+            isMoveToDoor = true;
+            isMove = true;
+            _randomOrder.time = 100;
+            _randomOrder.isTimes = false;
+            _randomOrder.isDone = false;
+            _randomOrder.isGame = true;
+        }
     }
 
     private void Move(Vector3 currentTo)

@@ -13,7 +13,13 @@ public class SoundControl : MonoBehaviour
     [SerializeField] private AudioSource _buttonSFX2;
     [SerializeField] private AudioSource _getMoneySFX, _getTipsSFX;
 
+    [SerializeField] private List<AudioSource> _backgroundMusic;
+    [SerializeField] private List<AudioSource> _moveSFX;
+
     private bool isTime = true;
+    private int _noPlaysSounds, _randomSound;
+
+
     public void OnButtonAnCoffeeMaker()
     {
         if(_onCoffee.isInMaker)
@@ -44,9 +50,41 @@ public class SoundControl : MonoBehaviour
                 break;
         }
     }
-
-    private void Update()
+    private void Awake()
     {
+        _randomSound = Random.Range(0, _backgroundMusic.Count);
+        _backgroundMusic[_randomSound].Play();
+        _noPlaysSounds = 0;
+    }
+
+    private void FixedUpdate()
+    {  
+        if (_noPlaysSounds == _backgroundMusic.Count)
+        {
+            _noPlaysSounds = 0;
+
+            if (_randomSound != _backgroundMusic.Count - 1)
+                _randomSound++;
+            else
+                _randomSound = 0;
+
+            _backgroundMusic[_randomSound].Play();
+        }
+        else
+        {
+            for (int i = 0; i < _backgroundMusic.Count; i++)
+            {
+                if (!_backgroundMusic[i].isPlaying)
+                    _noPlaysSounds++;
+                else
+                {
+                    _noPlaysSounds = 0;
+                    break;
+                }
+
+            }
+        }
+
         if (_randomOrder.time <= 8f && isTime)
         {
             isTime = false;
@@ -57,6 +95,11 @@ public class SoundControl : MonoBehaviour
             _anim.SetBool("isWork", false);
 
         if (_randomOrder.time <= 0.5f)
-            _timerSFX.Pause();
+            _timerSFX.Stop();
+    }
+
+    public void MoveSFX()
+    {
+        _moveSFX[Random.Range(0, _moveSFX.Count)].Play();
     }
 }
