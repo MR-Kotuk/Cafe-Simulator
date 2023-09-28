@@ -9,12 +9,10 @@ public class SoundControl : MonoBehaviour
 
     [SerializeField] private Animator _anim;
 
-    [SerializeField] private AudioSource _buttonSFX, _coffeeMakerSFX, _poulSFX, _timerSFX;
-    [SerializeField] private AudioSource _buttonSFX2;
+    [SerializeField] private AudioSource _buttonSFX, _buttonSFX2, _coffeeMakerSFX, _poulSFX, _timerSFX;
     [SerializeField] private AudioSource _getMoneySFX, _getTipsSFX;
 
     [SerializeField] private List<AudioSource> _backgroundMusic;
-    [SerializeField] private List<AudioSource> _moveSFX;
 
     private bool isTime = true;
     private int _noPlaysSounds, _randomSound;
@@ -96,10 +94,5 @@ public class SoundControl : MonoBehaviour
 
         if (_randomOrder.time <= 0.5f)
             _timerSFX.Stop();
-    }
-
-    public void MoveSFX()
-    {
-        _moveSFX[Random.Range(0, _moveSFX.Count)].Play();
     }
 }

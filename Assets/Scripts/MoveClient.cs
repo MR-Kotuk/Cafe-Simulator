@@ -108,6 +108,8 @@ public class MoveClient : MonoBehaviour
 
         if (distBar <= _distToBar && !isExit)
         {
+            _moveSFX.Pause();
+
             isMove = false;
 
             _anim.SetBool("isWait", RandomNum());
@@ -135,6 +137,8 @@ public class MoveClient : MonoBehaviour
     {
         if (isExitOne)
         {
+            _moveSFX.Play();
+
             isExitOne = false;
 
             _anim.SetBool("isUp", false);
