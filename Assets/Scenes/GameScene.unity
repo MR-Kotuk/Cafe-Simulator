@@ -12682,12 +12682,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OrderObj: {fileID: 0}
   MyOrderObj: {fileID: 0}
-  ProbabilityTips: 100
+  _limitTips: 100
+  _probabilityTips: 50
+  _imageAngry: {fileID: 509902920}
   _myMoneyText: {fileID: 2116771039}
   _tipsText: {fileID: 1129410736}
   _workDays: {fileID: 1810592310}
-  _imageAngry: {fileID: 509902920}
-  _limitTips: 50
   _payments: {fileID: 11400000, guid: 29012616308f32c45900c2ca5b95a795, type: 2}
   _randomOrder: {fileID: 953613498}
   _soundControl: {fileID: 775671987}
@@ -16182,16 +16182,13 @@ MonoBehaviour:
   isDone: 0
   isGame: 0
   isTimes: 0
+  time: 0
   _gameContr: {fileID: 776654008}
   _timeBar: {fileID: 42450151}
   _orders:
   - {fileID: 1567104757}
   - {fileID: 11021081}
   _ordersObjects: []
-  _chairsCustom: []
-  _tablesCustom: []
-  _orderUI: {fileID: 503543511}
-  _client: {fileID: 642335549}
   _objOrder:
   - {fileID: 2034591070}
   - {fileID: 681546466}
@@ -16202,12 +16199,15 @@ MonoBehaviour:
   - {fileID: 1402491272}
   - {fileID: 1369038333}
   - {fileID: 390450140}
+  _chairsCustom: []
+  _tablesCustom: []
+  _orderUI: {fileID: 503543511}
+  _client: {fileID: 642335549}
   _objName:
   - cola
   - soda
   - donut
   - desert
-  time: 0
 --- !u!4 &953613499
 Transform:
   m_ObjectHideFlags: 0
@@ -23094,14 +23094,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 776654011}
         m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: OnToShopButton
-        m_Mode: 1
+        m_MethodName: NextScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ShopScene
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 776654008}
@@ -26306,14 +26306,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 776654011}
         m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: OnToHomeButton
-        m_Mode: 1
+        m_MethodName: NextScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: HomeScene
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 776654008}
@@ -31090,6 +31090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3009b2e59f4b594db81d9d6ef7f96d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInMaker: 0
   _coffeeInMaker: {fileID: 1913671751}
   _coffeeOnBar: {fileID: 49376103}
   _coffeeOnBarPlus: {fileID: 1302722867}
@@ -31100,7 +31101,6 @@ MonoBehaviour:
   _animMilk: {fileID: 460293931}
   _randomOrder: {fileID: 953613498}
   _gameContr: {fileID: 776654008}
-  isInMaker: 0
 --- !u!65 &1906436274
 BoxCollider:
   m_ObjectHideFlags: 0
