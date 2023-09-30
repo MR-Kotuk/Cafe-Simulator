@@ -7,8 +7,11 @@ public class OnCoffee : MonoBehaviour
     [SerializeField] private GameObject _coffeeInMaker;
     [SerializeField] private GameObject _coffeeOnBar;
     [SerializeField] private GameObject _coffeeOnBarPlus;
+    [SerializeField] private GameObject _tutorialStage1, _tutorialStage2, _tutorialStage3;
+
     [SerializeField] private Animator _anim;
     [SerializeField] private Animator _animMilk;
+
     [SerializeField] private RandomOrder _randomOrder;
     [SerializeField] private GameContr _gameContr;
 
@@ -16,13 +19,30 @@ public class OnCoffee : MonoBehaviour
     public bool isInMaker = false;
     private bool isMilk = false;
     private bool isPoulCoffee = false;
+    private bool isTutorial;
 
+    private void Update()
+    {
+        if (PlayerPrefs.GetInt("Tutorial") == 0)
+            isTutorial = true;
+        else
+            isTutorial = false;
+
+        if (_randomOrder.isOrder && isTutorial)
+            _tutorialStage1.SetActive(true);
+    }
     private void OnMouseDown()
     {
         if (_randomOrder.isOrder)
         {
             _randomOrder.isOrder = false;
             isInMaker = true;
+
+            if (isTutorial)
+            {
+                _tutorialStage1.SetActive(false);
+                _tutorialStage2.SetActive(true);
+            }
 
             _coffeeInMaker.SetActive(true);
         }   
@@ -52,6 +72,12 @@ public class OnCoffee : MonoBehaviour
     {
         if (!isInMaker && isPoulCoffee)
         {
+            if (isTutorial)
+            {
+                _tutorialStage3.SetActive(false);
+                PlayerPrefs.SetInt("Tutorial", 1);
+            }
+
             _coffeeInMaker.SetActive(false);
             _coffeeOnBar.SetActive(true);
 
@@ -74,6 +100,12 @@ public class OnCoffee : MonoBehaviour
 
         _anim.SetBool("isPoul", false);
         _animMilk.SetBool("isPoul", false);
+
+        if (isTutorial)
+        {
+            _tutorialStage2.SetActive(false);
+            _tutorialStage3.SetActive(true);
+        }
     }
 
     private void EnableFalse()
