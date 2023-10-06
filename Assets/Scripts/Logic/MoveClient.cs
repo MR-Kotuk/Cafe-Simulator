@@ -137,6 +137,8 @@ public class MoveClient : MonoBehaviour
     {
         if (isExitOne)
         {
+            _gameContr.MyOrderObj = null;
+
             _moveSFX.Play();
 
             isExitOne = false;
@@ -149,7 +151,6 @@ public class MoveClient : MonoBehaviour
             isMove = true;
             _randomOrder.time = 100;
             _randomOrder.isTimes = false;
-            _randomOrder.isDone = false;
             _randomOrder.isGame = true;
         }
     }

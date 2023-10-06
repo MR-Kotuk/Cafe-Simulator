@@ -35,6 +35,8 @@ public class OnCoffee : MonoBehaviour
     {
         if (_randomOrder.isOrder)
         {
+            _randomOrder.isDone = false;
+
             _randomOrder.isOrder = false;
             isInMaker = true;
 
@@ -72,6 +74,9 @@ public class OnCoffee : MonoBehaviour
     {
         if (!isInMaker && isPoulCoffee)
         {
+            isPoulCoffee = false;
+            _randomOrder.isDone = true;
+
             if (isTutorial)
             {
                 _tutorialStage3.SetActive(false);
@@ -87,8 +92,6 @@ public class OnCoffee : MonoBehaviour
                 _gameContr.MyOrderObj = _coffeeOnBar;
 
             _gameContr.ClientPay();
-
-            _randomOrder.isDone = true;
 
             Invoke("EnableFalse", 1f);
         }
@@ -112,10 +115,8 @@ public class OnCoffee : MonoBehaviour
     {
         _coffeeOnBar.SetActive(false);
 
-        _randomOrder.isDone = false;
         _randomOrder.isOrder = false;
 
-        isPoulCoffee = false;
         isMilk = false;
     }
 }
