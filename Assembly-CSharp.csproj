@@ -63,6 +63,7 @@
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXEffectController.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXSceneManager.cs" />
     <Compile Include="Assets\Scripts\Logic\SoundControl.cs" />
+    <Compile Include="Assets\Scripts\Other\Roulette.cs" />
     <Compile Include="Assets\Scripts\Logic\ShopLogic.cs" />
     <Compile Include="Assets\Scripts\Logic\Payments.cs" />
     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXTarget.cs" />

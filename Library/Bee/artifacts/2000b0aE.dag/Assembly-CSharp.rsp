@@ -358,6 +358,7 @@
 "Assets/Scripts/Logic/ShopLogic.cs"
 "Assets/Scripts/Logic/SoundActive.cs"
 "Assets/Scripts/Logic/SoundControl.cs"
+"Assets/Scripts/Other/Roulette.cs"
 "Assets/Scripts/UI/MenuUI.cs"
 "Assets/Scripts/UI/ShowMoney.cs"
 -langversion:9.0

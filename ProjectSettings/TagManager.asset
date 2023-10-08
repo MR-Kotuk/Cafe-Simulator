@@ -10,6 +10,7 @@ TagManager:
   - donut
   - desert
   - coffee+
+  - FindR
   layers:
   - Default
   - TransparentFX
