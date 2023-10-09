@@ -27,7 +27,6 @@ public class GameContr : MonoBehaviour
 
     private void Start()
     {
-        _range = PlayerPrefs.GetInt("MyMoney");
         _howDays = PlayerPrefs.GetInt("HowDays");
 
         _profit = 0;
@@ -38,8 +37,13 @@ public class GameContr : MonoBehaviour
 
     private void Update()
     {
+        _range = PlayerPrefs.GetInt("MyMoney");
+
         if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
             PlayerPrefs.DeleteAll();
+            _howDays = 0;
+        }
 
         if (Input.GetKey(KeyCode.RightShift) && Input.GetKey(KeyCode.P))
             _profit += 1000;
