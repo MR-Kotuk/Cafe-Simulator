@@ -20,6 +20,8 @@ public class Roulette : MonoBehaviour
     private AudioSource _rouletteSound;
     private CircleCollider2D _colider;
 
+    private int _randomWinObj;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -90,17 +92,30 @@ public class Roulette : MonoBehaviour
         _wonMoney.SetActive(true);
         _won.SetActive(true);
     }
-    private int _randomWinObj;
+    bool isSkins;
+
     private void WinCustom()
     {
         _randomWinObj = Random.Range(0, _customObjName.Count);
 
-        while (PlayerPrefs.GetInt(_customObjName[_randomWinObj]) == 1)
+        isSkins = false;
+
+        for (int i = 0; i < _customObjName.Count; i++)
+            if (PlayerPrefs.GetInt(_customObjName[i]) == 0)
+                isSkins = true;
+
+        if (isSkins)
         {
-            _randomWinObj = Random.Range(0, _customObjName.Count);
+            while (PlayerPrefs.GetInt(_customObjName[_randomWinObj]) == 1)
+            {
+                _randomWinObj = Random.Range(0, _customObjName.Count);
+            }
         }
+        else
+            WinMoney(300);
         
-        if(PlayerPrefs.GetInt(_customObjName[_randomWinObj]) == 0)
+        
+        if(PlayerPrefs.GetInt(_customObjName[_randomWinObj]) == 0 && isSkins)
         {
             _winCustom.SetActive(true);
             _winCustomObj[_randomWinObj].SetActive(true);
