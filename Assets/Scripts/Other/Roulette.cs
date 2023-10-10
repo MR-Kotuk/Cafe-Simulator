@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using System.Globalization;
 
 public class Roulette : MonoBehaviour
 {
-    [SerializeField] private GameObject _roulette, _client;
+    [SerializeField] private GameObject _roulette, _buttoToGame;
     [SerializeField] private GameObject _wonMoney, _won, _winCustom;
 
-    [SerializeField] private TMP_Text _howWonMoney;
+    [SerializeField] private TMP_Text _howWonMoney, _timeToNextRoulette;
 
     [SerializeField] private List<string> _customObjName = new List<string>();
     [SerializeField] private List<GameObject> _winCustomObj;
@@ -18,33 +20,62 @@ public class Roulette : MonoBehaviour
     [SerializeField] private float _speed, _smooth, _wait;
 
     private AudioSource _rouletteSound;
-    private CircleCollider2D _colider;
 
     private int _randomWinObj;
+    private bool isSkins;
+    private bool isRoulette, isRot;
+    private float hoursPassed;
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-            SceneManager.LoadScene("GameScene");
+        _rouletteSound = gameObject.GetComponent<AudioSource>();
     }
     private void Start()
     {
         _won.SetActive(false);
-        _colider = gameObject.GetComponent<CircleCollider2D>();
-        _rouletteSound = gameObject.GetComponent<AudioSource>();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            SceneManager.LoadScene("GameScene");
+        Time.timeScale = 0;
 
+        if (PlayerPrefs.HasKey("LastTime"))
+        {
+            string lastTime = PlayerPrefs.GetString("LastTime");
+            TimeSpan timePassed = DateTime.UtcNow - DateTime.ParseExact(lastTime, "u", CultureInfo.InvariantCulture);
+            hoursPassed = (float)timePassed.TotalSeconds;
+
+            if (hoursPassed > 24)
+            {
+                isRoulette = true;
+                _timeToNextRoulette.text = "";
+            }
+            else
+            {
+                _timeToNextRoulette.text = "" + Math.Round(24 - hoursPassed, 4);
+                isRoulette = false;
+            }
+        }
+        else
+            isRoulette = true;
+    }
     private void OnMouseDown()
     {
-        _rouletteSound.Play();
-        _colider.enabled = false;
-        StartCoroutine(Rotate());
+        if (isRoulette && !isRot)
+        {
+            isRot = true;
+            isRoulette = false;
+            _rouletteSound.Play();
+            _buttoToGame.SetActive(false);
+            StartCoroutine(Rotate());
+        }
     }
-
-
     private IEnumerator Rotate()
     {
-        int rotCount = Random.Range(_minPower, _maxPower);
+        float lastSpeed = _speed;
+
+        int rotCount = UnityEngine.Random.Range(_minPower, _maxPower);
 
         for (int i = 0; i <= rotCount; i++)
         {
@@ -79,6 +110,8 @@ public class Roulette : MonoBehaviour
             WinCustom();
         else if (roundWin >= 320 && roundWin <= 360)
             WinMoney(100);
+
+        _speed = lastSpeed;
     }
 
 
@@ -92,13 +125,15 @@ public class Roulette : MonoBehaviour
         _wonMoney.SetActive(true);
         _won.SetActive(true);
     }
-    bool isSkins;
 
     private void WinCustom()
     {
-        _randomWinObj = Random.Range(0, _customObjName.Count);
+        _randomWinObj = UnityEngine.Random.Range(0, _customObjName.Count);
 
         isSkins = false;
+
+        for (int y = 0; y < _customObjName.Count; y++)
+            _winCustomObj[y].SetActive(false);
 
         for (int i = 0; i < _customObjName.Count; i++)
             if (PlayerPrefs.GetInt(_customObjName[i]) == 0)
@@ -108,7 +143,7 @@ public class Roulette : MonoBehaviour
         {
             while (PlayerPrefs.GetInt(_customObjName[_randomWinObj]) == 1)
             {
-                _randomWinObj = Random.Range(0, _customObjName.Count);
+                _randomWinObj = UnityEngine.Random.Range(0, _customObjName.Count);
             }
         }
         else
@@ -126,9 +161,20 @@ public class Roulette : MonoBehaviour
         
     }
 
-    public void ContinueGame()
+    public void ContinueGame(bool isWin)
     {
         _roulette.SetActive(false);
-        _client.SetActive(true);
+        _won.SetActive(false);
+        _winCustom.SetActive(false);
+        _wonMoney.SetActive(false);
+
+        Time.timeScale = 1;
+
+        if (isWin)
+        {
+            isRot = false;
+            _buttoToGame.SetActive(true);
+            PlayerPrefs.SetString("LastTime", DateTime.UtcNow.ToString("u", CultureInfo.InvariantCulture));
+        }
     }
 }
