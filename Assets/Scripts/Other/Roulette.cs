@@ -92,23 +92,25 @@ public class Roulette : MonoBehaviour
 
         int roundWin = Mathf.RoundToInt(transform.eulerAngles.z);
 
-        if (roundWin >= 0 && roundWin < 40)
+        Debug.Log(roundWin);
+
+        if (roundWin >= 180 && roundWin < 220)
             WinMoney(5);
-        else if (roundWin >= 40 && roundWin < 80)
+        else if (roundWin >= 220 && roundWin < 260)
             WinCustom();
-        else if (roundWin >= 80 && roundWin < 120)
+        else if (roundWin >= 260 && roundWin < 300)
             WinMoney(75);
-        else if (roundWin >= 120 && roundWin < 160)
+        else if (roundWin >= 300 && roundWin < 340)
             WinMoney(15);
-        else if (roundWin >= 160 && roundWin < 200)
+        else if (roundWin >= 340 || roundWin < 20)
             WinCustom();
-        else if (roundWin >= 200 && roundWin < 240)
+        else if (roundWin >= 20 && roundWin < 60)
             WinMoney(45);
-        else if (roundWin >= 240 && roundWin < 280)
+        else if (roundWin >= 60 && roundWin < 100)
             WinMoney(10);
-        else if (roundWin >= 280 && roundWin < 320)
+        else if (roundWin >= 100 && roundWin < 140)
             WinCustom();
-        else if (roundWin >= 320 && roundWin <= 360)
+        else if (roundWin >= 140 && roundWin <= 180)
             WinMoney(100);
 
         _speed = lastSpeed;
