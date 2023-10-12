@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,36 +24,36 @@ public class Roulette : MonoBehaviour
     private int _randomWinObj;
     private bool isSkins;
     private bool isRoulette, isRot;
-    private float hoursPassed;
+    private float hoursPassed, minutPassed, secondPassed;
 
     private void Awake()
     {
         _rouletteSound = gameObject.GetComponent<AudioSource>();
-    }
-    private void Start()
-    {
         _won.SetActive(false);
     }
     private void Update()
     {
+        Time.timeScale = 0;
+
         if (Input.GetKeyDown(KeyCode.Return))
             SceneManager.LoadScene("GameScene");
-        Time.timeScale = 0;
 
         if (PlayerPrefs.HasKey("LastTime"))
         {
             string lastTime = PlayerPrefs.GetString("LastTime");
             TimeSpan timePassed = DateTime.UtcNow - DateTime.ParseExact(lastTime, "u", CultureInfo.InvariantCulture);
-            hoursPassed = (float)timePassed.TotalSeconds;
+            hoursPassed = (int)timePassed.TotalHours;
+            minutPassed = timePassed.Minutes;
+            secondPassed = timePassed.Seconds;
 
-            if (hoursPassed > 24)
+            if (hoursPassed >= 24)
             {
                 isRoulette = true;
                 _timeToNextRoulette.text = "";
             }
             else
             {
-                _timeToNextRoulette.text = "" + Math.Round(24 - hoursPassed, 4);
+                _timeToNextRoulette.text = $"{23 - hoursPassed}.{60 - minutPassed}.{60 - secondPassed}";
                 isRoulette = false;
             }
         }
