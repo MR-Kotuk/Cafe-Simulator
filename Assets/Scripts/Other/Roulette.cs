@@ -53,7 +53,7 @@ public class Roulette : MonoBehaviour
             }
             else
             {
-                _timeToNextRoulette.text = $"{23 - hoursPassed}.{60 - minutPassed}.{60 - secondPassed}";
+                _timeToNextRoulette.text = $"{23 - hoursPassed}.{59 - minutPassed}.{60 - secondPassed}";
                 isRoulette = false;
             }
         }
