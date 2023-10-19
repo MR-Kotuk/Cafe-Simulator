@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
 
 public class ResultDay : MonoBehaviour
 {
+    [SerializeField] private List<string> _objName;
+
     [SerializeField] private TMP_Text _myMoneyText;
     [SerializeField] private TMP_Text _workDays;
 
@@ -20,7 +23,14 @@ public class ResultDay : MonoBehaviour
         _howWorkDays = PlayerPrefs.GetInt("HowDays");
 
         PlayerPrefs.SetInt("MyMoney", _range + _profit);
+        PlayerPrefs.SetInt("HowDays", _howWorkDays += 1);
         PlayerPrefs.Save();
+
+        _howWorkDays--;
+
+        for (int i = 0; i < _objName.Count; i++)
+            if (PlayerPrefs.GetInt(_objName[i]) > 0)
+                PlayerPrefs.SetInt(_objName[i], PlayerPrefs.GetInt(_objName[i]) - 1);
     }
 
     private void Update()
@@ -41,9 +51,7 @@ public class ResultDay : MonoBehaviour
     {
         isX2 = false;
 
-        _profit *= 2;
-
-        PlayerPrefs.SetInt("MyMoney", _range + _profit);
+        PlayerPrefs.SetInt("MyMoney", _range + (_profit *= 2));
         PlayerPrefs.Save();
     }
 }

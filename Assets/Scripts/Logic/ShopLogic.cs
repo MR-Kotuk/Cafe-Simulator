@@ -10,9 +10,9 @@ public class ShopLogic : MonoBehaviour
     [SerializeField] private List<TMP_Text> _isBuyDecorText;
     [SerializeField] private List<TMP_Text> _isBuyLampText;
     [SerializeField] private List<TMP_Text> _isBuyEatText;
+    [SerializeField] private TMP_Text[,] _isBuyText;
 
     [SerializeField] private List<GameObject> _reklamImageColor;
-    [SerializeField] private List<GameObject> _eat;
 
     [SerializeField] private List<string> _nameObj, _nameSelectObj, _eatName;
 
@@ -26,6 +26,7 @@ public class ShopLogic : MonoBehaviour
 
     private int myMoney;
     private int _nextMenu;
+    private int numPay;
     private readonly int _buyTrue = 1;
 
     private string _name;
@@ -45,55 +46,47 @@ public class ShopLogic : MonoBehaviour
     {
         myMoney = PlayerPrefs.GetInt("MyMoney");
 
-        for (int i = 0; i < _eat.Count; i++)
-        {
-            if (PlayerPrefs.GetInt(_eatName[i]) == _buyTrue)
-                _isBuyEatText[i].text = "Куплено";
-         
-            if (myMoney >= _payments._unblockPay[i] || PlayerPrefs.GetInt(_eatName[i]) == _buyTrue)
-                _eat[i].SetActive(false);
-            else
-                _eat[i].SetActive(true);
-        }
-
-        IsBuyText(_isBuyColorsText, _nameObj[0], _nameSelectObj[0]);
-        IsBuyText(_isBuyChairsText, _nameObj[1], _nameSelectObj[1]);
-        IsBuyText(_isBuyTablesText, _nameObj[2], _nameSelectObj[2]);
-        IsBuyText(_isBuyDecorText, _nameObj[3], _nameSelectObj[3]);
-        IsBuyText(_isBuyLampText, _nameObj[4], _nameSelectObj[4]);
-
+        IsBuyText(_isBuyColorsText, 0);
+        IsBuyText(_isBuyChairsText, 1);
+        IsBuyText(_isBuyTablesText, 2);
+        IsBuyText(_isBuyDecorText, 3);
+        IsBuyText(_isBuyLampText, 4);
     }
-
-    private void IsBuyText(List<TMP_Text> text, string name, string nameSelect)
+    
+    private void IsBuyText(List<TMP_Text> text, int num)
     {
-        for (int y = 0; y < text.Count; y++)
-            IsBuyText(text[y], y, name, nameSelect);
-    }
-    private void IsBuyText(TMP_Text text, int num, string name, string nameSelect)
-    {
-        if (PlayerPrefs.GetInt($"{name} {num}") == _buyTrue)
+        for (int i = 0; i < text.Count; i++)
         {
-            if (PlayerPrefs.GetInt(nameSelect) == num)
-                text.text = "Исп.";
-            else
-                text.text = "Куплено";
+            if (PlayerPrefs.GetInt($"{_nameObj[num]} {i}") == _buyTrue)
+            {
+                if (PlayerPrefs.GetInt(_nameSelectObj[num]) == i)
+                    text[i].text = "Исп.";
+                else
+                    text[i].text = "Куплено";
+            }
         }
     }
-
     public void OnBuy(string name)
     {
-        if (PlayerPrefs.GetInt(name) != _buyTrue)
+        if (name == "cola")
+            numPay = 0;
+        else if (name == "soda")
+            numPay = 1;
+        else if (name == "donut")
+            numPay = 2;
+        else if (name == "desert")
+            numPay = 3;
+
+        if (PlayerPrefs.GetInt("MyMoney") >= _payments._unblockPay[numPay])
         {
             _paySFX.Play();
 
-            for (int i = 0; i < _eat.Count; i++)
-                if(name == _eat[i].tag)
-                    PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[i]);
-
-            PlayerPrefs.SetInt(name, _buyTrue);
+            PlayerPrefs.SetInt("MyMoney", myMoney -= _payments._unblockPay[numPay]);
+            PlayerPrefs.SetInt(name, PlayerPrefs.GetInt(name) + Random.Range(2, 3));
             PlayerPrefs.Save();
         }
     }
+    
 
     public void OnBuyCustom(int num)
     {

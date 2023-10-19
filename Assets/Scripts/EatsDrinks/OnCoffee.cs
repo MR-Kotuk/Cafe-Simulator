@@ -23,7 +23,7 @@ public class OnCoffee : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerPrefs.GetInt("Tutorial") == 0)
+        if (!PlayerPrefs.HasKey("Tutorial"))
             isTutorial = true;
         else
             isTutorial = false;
@@ -116,7 +116,6 @@ public class OnCoffee : MonoBehaviour
         _coffeeOnBar.SetActive(false);
 
         _randomOrder.isOrder = false;
-
         isMilk = false;
     }
 }

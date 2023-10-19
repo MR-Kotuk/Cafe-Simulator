@@ -11,6 +11,7 @@ public class StartTutorials : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("MenuTutorials"))
         {
+            PlayerPrefs.SetInt("HowDays", 1);
             Time.timeScale = 0;
             _startTutorials[0].SetActive(true);
             gameObject.SetActive(true);

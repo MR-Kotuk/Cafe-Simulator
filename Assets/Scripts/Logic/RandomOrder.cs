@@ -21,21 +21,26 @@ public class RandomOrder : MonoBehaviour
     [SerializeField] private List<GameObject> _chairsCustom;
     [SerializeField] private List<GameObject> _tablesCustom;
 
+    [SerializeField] private List<string> _objName;
+
     [SerializeField] private GameObject _orderUI;
     [SerializeField] private GameObject _client;
-
-    [SerializeField] private List<string> _objName;
 
     private int _orderNum;
     private readonly float _maxTime = 100;
 
     private void Start()
     {
+        if (!PlayerPrefs.HasKey("MenuTutorials"))
+        {
+            PlayerPrefs.SetInt("soda", 2);
+            PlayerPrefs.SetInt("donut", 2);
+        }
         time = _maxTime;
         isTimes = true;
 
         for(int i = 0; i < _objOrder.Count; i++)
-            AddObjectsToList(_objOrder[i], _obj[i], _objName[i]);
+            AddObjectsToGame(_objOrder[i], _obj[i], _objName[i]);
 
         for (int i = 0; i < _ordersObjects.Count; i++)
             _ordersObjects[i].SetActive(true);
@@ -57,7 +62,10 @@ public class RandomOrder : MonoBehaviour
         isTimes = true;
         StartCoroutine(TimeMake());
 
-        _orderNum = Random.Range(0, _orders.Count);
+        if (!PlayerPrefs.HasKey("Tutorial"))
+            _orderNum = Random.Range(0, 1);
+        else
+            _orderNum = Random.Range(0, _orders.Count);
 
         _orders[_orderNum].SetActive(true);
         _orderUI.SetActive(true);
@@ -67,13 +75,29 @@ public class RandomOrder : MonoBehaviour
         isOrder = true;
     }
 
-    private void AddObjectsToList(GameObject objectOrder, GameObject objectAnBar, string name)
+    private void AddObjectsToGame(GameObject objectOrder, GameObject objectAnBar, string name)
     {
-        if (PlayerPrefs.GetInt(name) == 1)
+        if (PlayerPrefs.GetInt(name) > 0)
         {
-            _orders.Add(objectOrder);
-            _ordersObjects.Add(objectAnBar);
+            AddObjectToList(_orders, objectOrder);
+            AddObjectToList(_ordersObjects, objectAnBar);
         }
+        else
+        {
+            RemoveObjectInList(_orders, objectOrder);
+            RemoveObjectInList(_ordersObjects, objectAnBar);
+        }
+    }
+
+    private void AddObjectToList(List<GameObject> list, GameObject addObject)
+    {
+        if (!list.Contains(addObject))
+            list.Add(addObject);
+    }
+    private void RemoveObjectInList(List<GameObject> list,  GameObject removeObject)
+    {
+        if (list.Contains(removeObject))
+            list.Remove(removeObject);
     }
 
     private void CreateClients()

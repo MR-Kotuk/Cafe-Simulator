@@ -1769,6 +1769,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f738b5365b32fa04fb2f76a82df3c62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objName:
+  - cola
+  - soda
+  - donut
+  - desert
   _myMoneyText: {fileID: 1988190106}
   _workDays: {fileID: 448531054}
 --- !u!114 &1426917379

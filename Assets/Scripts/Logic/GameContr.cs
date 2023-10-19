@@ -28,9 +28,7 @@ public class GameContr : MonoBehaviour
     private void Start()
     {
         _howDays = PlayerPrefs.GetInt("HowDays");
-
         _profit = 0;
-        _howDays++;
 
         WorkTime();
     }
@@ -47,6 +45,9 @@ public class GameContr : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightShift) && Input.GetKey(KeyCode.P))
             _profit += 1000;
+
+        if (Input.GetKey(KeyCode.RightShift) && Input.GetKey(KeyCode.LeftShift))
+            EndGame();
 
         _myMoneyText.text = $"{_range + _profit}";
         _workDays.text = _howDays + "";
@@ -143,7 +144,6 @@ public class GameContr : MonoBehaviour
     public void SavePrefs()
     {
         PlayerPrefs.SetInt("MyMoney", _range);
-        PlayerPrefs.SetInt("HowDays", _howDays);
         PlayerPrefs.SetInt("Profit", _profit);
 
         PlayerPrefs.Save();

@@ -66,6 +66,7 @@ public class Roulette : MonoBehaviour
         {
             isRot = true;
             isRoulette = false;
+
             _rouletteSound.Play();
             _buttoToGame.SetActive(false);
             StartCoroutine(Rotate());
@@ -91,8 +92,6 @@ public class Roulette : MonoBehaviour
         _rouletteSound.Stop();
 
         int roundWin = Mathf.RoundToInt(transform.eulerAngles.z);
-
-        Debug.Log(roundWin);
 
         if (roundWin >= 180 && roundWin < 220)
             WinMoney(5);

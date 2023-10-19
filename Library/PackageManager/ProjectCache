@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638285813799817563
-    m_Hash: 1469888069
+      ticks: 638330015327242034
+    m_Hash: 1434135632
   m_LockFileStatus:
     m_FilePath: C:/Users/Taras Sliusar/Test Project/Simulator/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638285813933396515
-    m_Hash: 861662841
+      ticks: 638330015327252018
+    m_Hash: 896388351
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -52,10 +52,13 @@ m_ResolvedPackages:
     - 1.1.1
     - 1.1.3
     - 1.1.4
+    - 1.1.5
     - 2.0.0-pre.3
+    - 2.0.0-pre.4
     compatible:
     - 1.1.4
-    recommended: 1.1.4
+    - 1.1.5
+    recommended: 1.1.5
     deprecated: []
   dependencies:
   - name: com.unity.modules.ai
@@ -180,12 +183,16 @@ m_ResolvedPackages:
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
+    - 2.1.0
+    - 2.2.0
     compatible:
     - 2.0.5
     - 2.0.7
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
+    - 2.1.0
+    - 2.2.0
     recommended: 2.0.7
     deprecated: []
   dependencies: []
@@ -291,9 +298,13 @@ m_ResolvedPackages:
     - 3.0.21
     - 3.0.22
     - 3.0.24
+    - 3.0.25
+    - 3.0.26
     compatible:
     - 3.0.24
-    recommended: 3.0.24
+    - 3.0.25
+    - 3.0.26
+    recommended: 3.0.26
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -372,10 +383,14 @@ m_ResolvedPackages:
     - 2.0.17
     - 2.0.18
     - 2.0.20
+    - 2.0.21
+    - 2.0.22
     compatible:
     - 2.0.18
     - 2.0.20
-    recommended: 2.0.20
+    - 2.0.21
+    - 2.0.22
+    recommended: 2.0.22
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
@@ -535,6 +550,7 @@ m_ResolvedPackages:
     - 4.0.0
     - 4.0.1
     - 5.0.0-pre.1
+    - 5.0.0
     compatible:
     - 4.0.1
     recommended: 4.0.1
@@ -843,6 +859,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.3
     - 3.2.0-pre.4
     - 3.2.0-pre.5
+    - 3.2.0-pre.6
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     compatible:
@@ -852,6 +869,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.3
     - 3.2.0-pre.4
     - 3.2.0-pre.5
+    - 3.2.0-pre.6
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     recommended: 3.0.6
@@ -996,22 +1014,26 @@ m_ResolvedPackages:
     - 1.7.3
     - 1.7.4
     - 1.7.5
+    - 1.7.6
     - 1.8.0
     - 1.8.1
     - 1.8.2
     - 1.8.3
     - 1.8.4
     - 1.8.5
+    - 1.8.6
     compatible:
     - 1.7.4
     - 1.7.5
+    - 1.7.6
     - 1.8.0
     - 1.8.1
     - 1.8.2
     - 1.8.3
     - 1.8.4
     - 1.8.5
-    recommended: 1.7.5
+    - 1.8.6
+    recommended: 1.7.6
     deprecated: []
   dependencies:
   - name: com.unity.modules.director
