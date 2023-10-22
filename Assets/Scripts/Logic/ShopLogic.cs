@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using YG;
 public class ShopLogic : MonoBehaviour
 {
     [SerializeField] private List<TMP_Text> _isBuyChairsText;
@@ -30,6 +30,9 @@ public class ShopLogic : MonoBehaviour
     private readonly int _buyTrue = 1;
 
     private string _name;
+
+    private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
+    private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
 
     private void Start()
     {
@@ -132,8 +135,7 @@ public class ShopLogic : MonoBehaviour
     {
         if (PlayerPrefs.GetInt($"{_name} {num}") != _buyTrue)
         {
-            ShowReklam();
-            PlayerPrefs.SetInt($"{_name} {num}", _buyTrue);
+            ShowReklam(num);
         }
 
         for(int i = 0; i < _nameObj.Count; i++)
@@ -161,9 +163,14 @@ public class ShopLogic : MonoBehaviour
         _menu[_nextMenu].SetActive(true);
     }
 
-    private void ShowReklam()
+    private void ShowReklam(int id)
     {
         Debug.Log("Reklam");
-        //Add Reklam Logic
+        YandexGame.RewVideoShow(id);
+    }
+
+    private void Rewarded(int id)
+    {
+        PlayerPrefs.SetInt($"{_name} {id}", _buyTrue);
     }
 }

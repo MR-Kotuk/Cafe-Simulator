@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using YG;
 
 public class ResultDay : MonoBehaviour
 {
@@ -14,8 +15,14 @@ public class ResultDay : MonoBehaviour
     private int _howWorkDays;
     private int _profit, _range;
 
+
+    private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
+    private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
+
     private void Start()
     {
+        YandexGame.ReviewShow(true);
+
         isX2 = true;
 
         _profit = PlayerPrefs.GetInt("Profit");
@@ -41,17 +48,19 @@ public class ResultDay : MonoBehaviour
 
     public void OnX2Button()
     {
-        //Add Reklam Logic
-
-        if(isX2)
-            X2();
+        if (isX2)
+        {
+            isX2 = false;
+            YandexGame.RewVideoShow(1000);
+        }
     }
 
-    private void X2()
+    private void Rewarded(int id)
     {
-        isX2 = false;
-
-        PlayerPrefs.SetInt("MyMoney", _range + (_profit *= 2));
-        PlayerPrefs.Save();
+        if(id == 1000)
+        {
+            PlayerPrefs.SetInt("MyMoney", _range + (_profit *= 2));
+            PlayerPrefs.Save();
+        }
     }
 }
