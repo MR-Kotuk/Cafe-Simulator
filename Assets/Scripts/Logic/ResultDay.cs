@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;
 using YG;
 
 public class ResultDay : MonoBehaviour
 {
     [SerializeField] private List<string> _objName;
 
-    [SerializeField] private TMP_Text _myMoneyText;
-    [SerializeField] private TMP_Text _workDays;
+    [SerializeField] private Text _myMoneyText;
+    [SerializeField] private Text _workDays;
 
     private bool isX2;
 

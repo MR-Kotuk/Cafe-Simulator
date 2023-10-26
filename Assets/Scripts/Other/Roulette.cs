@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 using System;
 using System.Globalization;
 
@@ -11,7 +11,7 @@ public class Roulette : MonoBehaviour
     [SerializeField] private GameObject _roulette, _buttoToGame;
     [SerializeField] private GameObject _wonMoney, _won, _winCustom;
 
-    [SerializeField] private TMP_Text _howWonMoney, _timeToNextRoulette;
+    [SerializeField] private Text _howWonMoney, _timeToNextRoulette;
 
     [SerializeField] private List<string> _customObjName = new List<string>();
     [SerializeField] private List<GameObject> _winCustomObj;

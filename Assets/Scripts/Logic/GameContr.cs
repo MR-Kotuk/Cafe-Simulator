@@ -1,6 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class GameContr : MonoBehaviour
 {
@@ -12,9 +12,9 @@ public class GameContr : MonoBehaviour
 
     [SerializeField] private GameObject _imageAngry;
 
-    [SerializeField] private TMP_Text _myMoneyText;
-    [SerializeField] private TMP_Text _tipsText;
-    [SerializeField] private TMP_Text _workDays;
+    [SerializeField] private Text _myMoneyText;
+    [SerializeField] private Text _tipsText;
+    [SerializeField] private Text _workDays;
 
     [SerializeField] private Payments _payments;
     [SerializeField] private RandomOrder _randomOrder;

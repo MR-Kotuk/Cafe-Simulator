@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using YG;
+using UnityEngine.UI;
 public class ShopLogic : MonoBehaviour
 {
-    [SerializeField] private List<TMP_Text> _isBuyChairsText;
-    [SerializeField] private List<TMP_Text> _isBuyTablesText;
-    [SerializeField] private List<TMP_Text> _isBuyColorsText;
-    [SerializeField] private List<TMP_Text> _isBuyDecorText;
-    [SerializeField] private List<TMP_Text> _isBuyLampText;
-    [SerializeField] private List<TMP_Text> _isBuyEatText;
-    [SerializeField] private TMP_Text[,] _isBuyText;
+    [SerializeField] private List<Text> _isBuyChairsText;
+    [SerializeField] private List<Text> _isBuyTablesText;
+    [SerializeField] private List<Text> _isBuyColorsText;
+    [SerializeField] private List<Text> _isBuyDecorText;
+    [SerializeField] private List<Text> _isBuyLampText;
+    [SerializeField] private List<Text> _isBuyEatText;
+    [SerializeField] private Text[,] _isBuyText;
 
     [SerializeField] private List<GameObject> _reklamImageColor;
 
@@ -56,7 +56,7 @@ public class ShopLogic : MonoBehaviour
         IsBuyText(_isBuyLampText, 4);
     }
     
-    private void IsBuyText(List<TMP_Text> text, int num)
+    private void IsBuyText(List<Text> text, int num)
     {
         for (int i = 0; i < text.Count; i++)
         {
